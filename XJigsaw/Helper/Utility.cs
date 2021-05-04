@@ -61,6 +61,9 @@ namespace XJigsaw.Helper
             return BestScoreViewModel.FormatLevelById(JigsawPage.CurrentJigsaw.Level);
         }
 
+        /**
+         * Static method to tell if it's iOS
+         */
         public static bool IsiOS()
         {
             return Device.RuntimePlatform == Device.iOS;
