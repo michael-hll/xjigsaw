@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="XJigsaw.Views.PopupConfirmPage"
+    CloseWhenBackgroundIsClicked="False">
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+    <StackLayout 
+        VerticalOptions="Center" 
+        HorizontalOptions="Center"        
+        Padding="20, 20, 20, 20">
+        <Frame HeightRequest="200" WidthRequest="200">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="35*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="35*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="labelTitle" Grid.Row="0" Grid.Column="1" Text="XXX" Grid.ColumnSpan="3"
+                       HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="Orange"/>
+                <Label x:Name="labelMessage" Grid.Row="1" Grid.Column="1" Text="message here" Grid.ColumnSpan="3"
+                       HorizontalOptions="Center" VerticalTextAlignment="Center"/>
+                <Button x:Name="buttonOK" Grid.Row="2" Grid.Column="3" Text="确定"
+                        Clicked="ConfirmButton_Clicked"/>
+                <Button x:Name="buttonCancel" Grid.Row="2" Grid.Column="1" Text="取消"
+                        Clicked="CloseButton_Clicked"/>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

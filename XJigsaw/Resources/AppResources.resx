@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="WelcomeText" xml:space="preserve">
+        <value>Hello MAIU :)</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Zidong" xml:space="preserve">
+        <value>Auto</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Title" xml:space="preserve">
+        <value>X Jigsaw</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Warning" xml:space="preserve">
+        <value>Warning</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ConfirmDeleteAllData" xml:space="preserve">
+        <value>Delete all data?</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Yes" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_No" xml:space="preserve">
+        <value>No</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ConfirmDeleteCurrent" xml:space="preserve">
+        <value>Delete current Jigsaw?</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_PictureSize" xml:space="preserve">
+        <value>Picture Size</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_PictureLevel" xml:space="preserve">
+        <value>Level</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_PictureSteps" xml:space="preserve">
+        <value>Taps</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_PictureRatio" xml:space="preserve">
+        <value>Ratio</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_PictureCreationDate" xml:space="preserve">
+        <value>Created</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_HistorySelect" xml:space="preserve">
+        <value>Select</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_HistoryDelete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_HistoryTotalCount" xml:space="preserve">
+        <value>Total</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_GameMode" xml:space="preserve">
+        <value>Game Mode</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SaveJigsawSucceed" xml:space="preserve">
+        <value>Save Successfull</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SaveJigsawNotes" xml:space="preserve">
+        <value>You can only save it after watching AD!</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_OK" xml:space="preserve">
+        <value>OK</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Success" xml:space="preserve">
+        <value>Success</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TimeUsed" xml:space="preserve">
+        <value>Time</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_CongratuateNextLevel" xml:space="preserve">
+        <value>You are upgraded to next level</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Confirm" xml:space="preserve">
+        <value>Confirm</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Congratulation" xml:space="preserve">
+        <value>Congratulations</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Infor" xml:space="preserve">
+        <value>Information</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Failed" xml:space="preserve">
+        <value>Failed</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SplitImage" xml:space="preserve">
+        <value>Splitting Image</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_BuildImage" xml:space="preserve">
+        <value>Building Jigsaw</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ConfirmNewGame" xml:space="preserve">
+        <value>Sure to restart?</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ConfirmToInit" xml:space="preserve">
+        <value>Sure to reset?</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ResetJigsaw" xml:space="preserve">
+        <value>Resetting</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_GamePause" xml:space="preserve">
+        <value>Game Paused!</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ConfirmQuitGame" xml:space="preserve">
+        <value>Quit game?</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ChooseAnImage" xml:space="preserve">
+        <value>Choose a Picture</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ChooseImage" xml:space="preserve">
+        <value>Choose Picture</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_ImageLibrary" xml:space="preserve">
+        <value>Library</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Canel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_Snapshot" xml:space="preserve">
+        <value>Capture</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TakePhote" xml:space="preserve">
+        <value>Take Photo(doesn't work)</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_UserName" xml:space="preserve">
+        <value>User Name</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_UserLevel" xml:space="preserve">
+        <value>Level</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SettingPictureLevel" xml:space="preserve">
+        <value>Level: </value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SettingPictureRatio" xml:space="preserve">
+        <value>Ratio: </value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SettingPictureTransparent" xml:space="preserve">
+        <value>Transparent: </value>
+    </data>
+	<data name="XJigsaw_Jigsaw_SettingSound" xml:space="preserve">
+        <value>Sound: </value>
+    </data>
+	<data name="XJigsaw_Jigsaw_DefaultUserName" xml:space="preserve">
+        <value>Default User</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabSaveHistory" xml:space="preserve">
+        <value>Save History</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabLocal" xml:space="preserve">
+        <value>Local</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabServer" xml:space="preserve">
+        <value>Server</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabJigsaw" xml:space="preserve">
+        <value>Jigsaw</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabSourceImage" xml:space="preserve">
+        <value>Source Image</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabSetting" xml:space="preserve">
+        <value>Setting</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_TabAbout" xml:space="preserve">
+        <value>About</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_AD_Playing" xml:space="preserve">
+        <value>Playing...</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_AD_Loading" xml:space="preserve">
+        <value>Loading...</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_AD_UserLeaving" xml:space="preserve">
+        <value>User away...</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_AD_FailedLoading" xml:space="preserve">
+        <value>Faild loading AD!</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_AD_StartPlaying" xml:space="preserve">
+        <value>Begin to play</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_AD_StartLoading" xml:space="preserve">
+        <value>begin to load</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_About_Warning" xml:space="preserve">
+        <value>Jigsaw is saved in your local device. All saved data will be lost when you uninstall the app! You can save jigsaw successfully only when you finished watching an advertisement.</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_About_Author" xml:space="preserve">
+        <value>Author:</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_About_Author_Name" xml:space="preserve">
+        <value>Ri Yue Wei Guang</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_About_BestScore" xml:space="preserve">
+        <value>Best Scores</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_About_Version" xml:space="preserve">
+        <value>Version:</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_Infor" xml:space="preserve">
+        <value>Pull down to refresh.</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_BestScore_NewRecord" xml:space="preserve">
+        <value>You have got a new reocrd, before is: </value>
+    </data>
+	<data name="XJigsaw_Jigsaw_About_Note" xml:space="preserve">
+        <value>Notes</value>
+    </data>
+</root>

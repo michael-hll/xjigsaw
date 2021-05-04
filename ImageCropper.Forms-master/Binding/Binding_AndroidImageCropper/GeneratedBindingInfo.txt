@@ -1,0 +1,4 @@
+﻿Binding for:
+com.theartofdev.edmodo:android-image-cropper:2.8.2
+
+Dependencies:

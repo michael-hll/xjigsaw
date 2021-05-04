@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:admob="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+    x:Class="XJigsaw.Views.HistoryPublicPage"
+    xmlns:resource="clr-namespace:XJigsaw.Resources"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True"
+    Shell.NavBarHasShadow="True"    
+    Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}">
+    <StackLayout Padding="0" Margin="0" Spacing="0">
+        <Image Source="construction.jpeg" Aspect="AspectFit" Margin="0"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"/>
+        <admob:MTAdView AdsId="ca-app-pub-3940256099942544/2934735716"
+                        VerticalOptions="EndAndExpand"
+                        HeightRequest="100" Margin="0, 2"/>
+    </StackLayout>
+
+</ContentPage>

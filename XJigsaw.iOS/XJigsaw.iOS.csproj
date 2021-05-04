@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE798F6E-3C83-4A7D-A725-9F5D86126E85}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{89a4fe7c-635d-49c9-8d8c-5cd363c0d68d}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>XJigsaw.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>XJigsaw.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>automatic</ProvisioningType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <CodesignProvision>X Jigsaw AppStore Profile</CodesignProvision>
+    <CodesignKey>Apple Distribution: LiangLiang Han (DA898HHNA4)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>Apple Development: LiangLiang Han (LF97VTF674)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+    <MtouchInterpreter>-all</MtouchInterpreter>
+    <CodesignProvision>Han LiangLiang Profile</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>Apple Distribution: LiangLiang Han (DA898HHNA4)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <OptimizePNGs></OptimizePNGs>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
+    <CodesignProvision>X Jigsaw AppStore Profile</CodesignProvision>
+    <CodesignProvision>X Jigsaw AppStore Profile</CodesignProvision>
+    <MtouchVerbosity>2</MtouchVerbosity>
+    <MtouchVerbosity>2</MtouchVerbosity>
+    <Commandlineparameters></Commandlineparameters>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ImageResource.cs" />
+    <Compile Include="MyTabbedPageRenderer.cs" />
+    <Compile Include="AppVersionAndBuild.cs" />
+    <Compile Include="EmailService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_about.png" />
+    <BundleResource Include="Resources\icon_about%402x.png" />
+    <BundleResource Include="Resources\icon_about%403x.png" />
+    <BundleResource Include="Resources\icon_feed.png" />
+    <BundleResource Include="Resources\icon_feed%402x.png" />
+    <BundleResource Include="Resources\icon_feed%403x.png" />
+    <BundleResource Include="Resources\replace.png" />
+    <BundleResource Include="Resources\icons8-hard-to-find-32.png" />
+    <BundleResource Include="Resources\tap.wav" />
+    <BundleResource Include="Resources\success.mp3" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\construction.jpeg" />
+    <BundleResource Include="Resources\play.png" />
+    <BundleResource Include="Resources\stop.png" />
+    <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\zh-CN.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\xjigsasw_logo.png" />
+    <BundleResource Include="Resources\xjigsasw_logo%402x.png" />
+    <BundleResource Include="Resources\xjigsaw_logo%403x.png" />
+    <BundleResource Include="Resources\jigsaw_bg.png" />
+    <BundleResource Include="Resources\reset.png" />
+    <BundleResource Include="Resources\shuffle.png" />
+    <BundleResource Include="Resources\choose_image.png" />
+    <BundleResource Include="Resources\save.png" />
+    <BundleResource Include="Resources\startup_bg.png" />
+    <BundleResource Include="Resources\startup_bg.png" />
+    <BundleResource Include="Resources\delete.png" />
+    <BundleResource Include="Resources\tap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Plugin.ImageEdit">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.7.335</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PinchZoomImage">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.MediaManager.Forms">
+      <Version>1.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer">
+      <Version>1.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="MarcTron.Admob">
+      <Version>1.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Toast">
+      <Version>2.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.0.0.11</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\en.lproj\" />
+    <Folder Include="Resources\zh-CN.lproj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XJigsaw\XJigsaw.csproj">
+      <Project>{521D4619-C84F-4ECE-BA93-32205A7F9CF5}</Project>
+      <Name>XJigsaw</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageCropper.Forms-master\ImageCropper\ImageCropper.iOS\ImageCropper.iOS.csproj">
+      <Project>{2798EED2-0A88-45E7-97D5-F7DCB01233E1}</Project>
+      <Name>ImageCropper.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageCropper.Forms-master\Binding\TOCropViewController\TOCropViewController.csproj">
+      <Project>{C5DCB26A-02D0-4D8B-878E-C9169915C22A}</Project>
+      <Name>TOCropViewController</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon60-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120-3.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon76-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon167-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon1024-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+</Project>

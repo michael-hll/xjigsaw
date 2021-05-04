@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:XJigsaw.Views"
+       xmlns:resource="clr-namespace:XJigsaw.Resources"
+       Title="XJigsaw"
+       x:Class="XJigsaw.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar x:Name="tabBars">
+        <Tab x:Name="historyTab"
+             Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabSaveHistory}"
+             Icon="icon_feed.png">
+            <ShellContent Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabLocal}"
+                          ContentTemplate="{DataTemplate views:HistoryLocalPage}" />
+            <ShellContent Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabServer}"
+                          ContentTemplate="{DataTemplate views:HistoryPublicPage}" IsVisible="False"/>
+            <ShellContent Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_BestScore}"
+                          ContentTemplate="{DataTemplate views:BestScorePage}" />
+        </Tab>
+        <Tab x:Name="jigsawTab"
+             Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabJigsaw}"
+             Icon="icons8-hard-to-find-32.png">
+
+            <ShellContent x:Name="jigsawPage"
+                          Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabJigsaw}"
+                          Icon="puzzle.png"                          
+                          ContentTemplate="{DataTemplate views:JigsawPage}"/>
+            <ShellContent
+                          x:Name="sourcePage"
+                          Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabSourceImage}"
+                          Icon="cat.png"
+                          ContentTemplate="{DataTemplate views:SourceImagePage}" />
+            <ShellContent
+                          x:Name="settingPage"
+                          Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabSetting}"
+                          Icon="cat.png"
+                          ContentTemplate="{DataTemplate views:SettingPage}" />
+        </Tab>
+        <Tab
+             x:Name="aboutTab"
+             Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_TabAbout}"
+             Icon="icon_about.png">
+            <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" />
+        </Tab>
+    </TabBar>
+
+    <!--
+        If you would like to navigate to this content you can do so by calling
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <!--
+    <TabBar>
+        <ShellContent Title="Login" Icon="icon_about" Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar> -->
+
+
+</Shell>

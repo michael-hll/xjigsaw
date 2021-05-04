@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XJigsaw.Views.JigsawPage"
+    xmlns:vm="clr-namespace:XJigsaw.ViewModels"
+    xmlns:resource="clr-namespace:XJigsaw.Resources"
+    Shell.TabBarIsVisible="True"
+    Shell.NavBarHasShadow="True"    
+    Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}"
+    >
+
+    <Shell.NavBarIsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" />
+    </Shell.NavBarIsVisible>
+
+    <ContentPage.BindingContext>
+        <vm:JigsawViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:String x:Key="BottomLabelFontFamily">Courier</x:String>
+            <x:Double x:Key="BottomLabelFontSize">9</x:Double>
+            <Thickness x:Key="BottomLabelMargin">5,0</Thickness>
+            <TextAlignment x:Key="BottomLabelTextAlignment">Center</TextAlignment>
+            <Thickness x:Key="TopLabelMargin">3,0</Thickness>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0, 0, 0, 0" />
+    </ContentPage.Padding>
+
+    <ContentPage.ToolbarItems>
+        <!--
+        <ToolbarItem Text="打乱" />
+        <ToolbarItem Text="复原" />
+        <ToolbarItem Text="选择" />
+        -->
+    </ContentPage.ToolbarItems>
+
+    <ContentView SizeChanged="OnContainerSizeChanged" Padding="0" BackgroundColor="Black">
+        <StackLayout x:Name="stackLayout"
+                     Margin="0"
+                     BackgroundColor="Black"
+                     Padding="0"
+                     VerticalOptions="FillAndExpand"
+                     Spacing="0"
+                     >
+            <Frame x:Name="toolBarFrame"
+                   Padding="5,5"
+                   BackgroundColor="LightGoldenrodYellow"
+                   Margin="0"
+                   BorderColor="DarkGray"
+                   CornerRadius="0"
+                   HasShadow="False"
+                   HeightRequest="30"
+                   >
+                <Grid Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ImageButton x:Name="chooseImageButton" Source="choose_image.png"                                 
+                                 Grid.Column="1"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 Margin="{StaticResource TopLabelMargin}"
+                                 Clicked="OnSelectImageClicked"/>
+                    <ImageButton x:Name="shuffleButton" Source="shuffle.png"                                 
+                                 Grid.Column="2"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 Margin="{StaticResource TopLabelMargin}"
+                                 Clicked="OnRandomizeButtonClicked"/>
+                    <ImageButton x:Name="resetButton" Source="reset.png"                                 
+                                 Grid.Column="3"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 Margin="{StaticResource TopLabelMargin}"
+                                 Clicked="OnReverseButtonClicked"/>
+                    <ImageButton x:Name="saveButton"
+                                 Source="save.png"                                 
+                                 Grid.Column="4"
+                                 HeightRequest="25"
+                                 WidthRequest="25"
+                                 Margin="{StaticResource TopLabelMargin}"
+                                 Clicked="OnSaveButtonClicked"/>
+                    <ImageButton x:Name="playButton"
+                                 Source="play.png"                                 
+                                 Grid.Column="5"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 Margin="{StaticResource TopLabelMargin}"
+                                 Clicked="OnPlaybuttonClicked"/>
+                    <Frame x:Name="timerFrame" Grid.Column="7" Grid.Row="0"
+                           Margin="0" Padding="0"
+                           IsVisible="False"
+                           CornerRadius="0" BackgroundColor="{StaticResource Primary}"
+                           HasShadow="False" BorderColor="LightSkyBlue"
+                           HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="30">
+                        <Label x:Name="labelTimer" Text="00:00:00" FontSize="20" Margin="10,1" BackgroundColor="{StaticResource Primary}"
+                               FontFamily="Courier" TextColor="LightCyan" FontAttributes="None"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               HorizontalTextAlignment="Center" IsVisible="True"
+                               VerticalTextAlignment="Center"/>
+                    </Frame>
+                </Grid>
+            </Frame>
+
+
+            <ProgressBar x:Name="progressBar" Progress="0.00" ProgressColor="Orange" HeightRequest="5"
+                          />
+            <AbsoluteLayout x:Name="absoluteLayout"
+                            BackgroundColor="Black"
+                            IsVisible="True"
+                            />
+
+            <Frame x:Name="statusBarFrame"
+                   Padding="5"
+                   BackgroundColor="LightGoldenrodYellow"
+                   Margin="0"
+                   BorderColor="DarkGray"
+                   CornerRadius="0"
+                   HasShadow="False"
+                   HeightRequest="10"
+                   MinimumHeightRequest="30"
+                   >
+                <Grid Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        x:Name="labelID"
+                        Text=""
+                        FontSize="{StaticResource BottomLabelFontSize}"
+                        FontFamily="{StaticResource BottomLabelFontFamily}"
+                        HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                        VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                        TextColor="Black"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="FillAndExpand" 
+                        Grid.Column="0"
+                        Margin="{StaticResource BottomLabelMargin}"
+                        Padding="0"/>
+
+                    <Label
+                        x:Name="labelInfor"
+                        Text=""
+                        FontSize="{StaticResource BottomLabelFontSize}"
+                        FontFamily="{StaticResource BottomLabelFontFamily}"
+                        HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                        VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                        TextColor="Black"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="FillAndExpand" 
+                        Grid.Column="1"
+                        Margin="{StaticResource BottomLabelMargin}"
+                        Padding="0"/>
+
+                    <Label
+                        x:Name="labelSuccess"
+                        Text=""
+                        FontSize="{StaticResource BottomLabelFontSize}"
+                        FontFamily="{StaticResource BottomLabelFontFamily}"
+                        HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                        VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                        TextColor="Black"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Grid.Column="2"
+                        Margin="{StaticResource BottomLabelMargin}"
+                        Padding="0"/>
+
+                    <Label
+                       x:Name="labelImageRatio"
+                       Text="0:0"
+                       FontSize="{StaticResource BottomLabelFontSize}"
+                       FontFamily="{StaticResource BottomLabelFontFamily}"
+                       HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="FillAndExpand" 
+                       Grid.Column="3"                       
+                       Margin="{StaticResource BottomLabelMargin}"
+                       Padding="0"/>
+                    <Label
+                       x:Name="labelImageResolution"
+                       Text="000x000"
+                       FontSize="{StaticResource BottomLabelFontSize}"
+                       FontFamily="{StaticResource BottomLabelFontFamily}"
+                       HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       TextColor="Black"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="FillAndExpand" 
+                       Grid.Column="4"                       
+                       Margin="{StaticResource BottomLabelMargin}"
+                       Padding="0"/>
+                    <Label
+                       x:Name="labelLevel"
+                       Text="0x0"
+                       FontSize="{StaticResource BottomLabelFontSize}"
+                       FontFamily="{StaticResource BottomLabelFontFamily}"
+                       HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="FillAndExpand" 
+                       Grid.Column="5"                       
+                       Margin="{StaticResource BottomLabelMargin}"
+                       Padding="0"/>
+                    <Label
+                       x:Name="labelOpacity"
+                       Text="1"
+                       FontSize="{StaticResource BottomLabelFontSize}"
+                       FontFamily="{StaticResource BottomLabelFontFamily}"
+                       HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="FillAndExpand" 
+                       Grid.Column="6"                       
+                       Margin="{StaticResource BottomLabelMargin}"
+                       Padding="0"/>
+                    <Label
+                       x:Name="labelSteps"
+                       Text="1"
+                       FontSize="{StaticResource BottomLabelFontSize}"
+                       FontFamily="{StaticResource BottomLabelFontFamily}"
+                       HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       VerticalOptions="FillAndExpand" 
+                       Grid.Column="7"                       
+                       Margin="{StaticResource BottomLabelMargin}"
+                       Padding="0"/>
+                </Grid>
+            </Frame>
+
+        </StackLayout>
+    </ContentView>
+</ContentPage>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:admob="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+    x:Class="XJigsaw.Views.HistoryLocalPage"
+    xmlns:resource="clr-namespace:XJigsaw.Resources"
+    Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True"
+    Shell.NavBarHasShadow="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="10"></Setter>
+            </Style>
+            <x:String x:Key="BottomLabelFontFamily">Courier</x:String>
+            <x:Double x:Key="BottomLabelFontSize">9</x:Double>
+            <Thickness x:Key="BottomLabelMargin">5,0</Thickness>
+            <TextAlignment x:Key="BottomLabelTextAlignment">Center</TextAlignment>
+            <Thickness x:Key="TopLabelMargin">2,0</Thickness>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Margin="0">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}"
+                     x:Name="refreshView"
+                     Margin="2"
+                     >
+            <CollectionView
+                x:Name="collectionView"
+                ItemsSource="{Binding JigsawListItems}"
+                >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_HistorySelect}"
+                                           IconImageSource="tap.png"
+                                           BackgroundColor="LightGreen"                                           
+                                           Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.SelectCommand}"
+                                           CommandParameter="{Binding}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_HistoryDelete}"
+                                           IconImageSource="delete.png"
+                                           BackgroundColor="Red"                                           
+                                           Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame BorderColor="DarkGray"
+                                   CornerRadius="0"
+                                   HasShadow="False"
+                                   Padding="2"
+                                   Margin="2"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand">
+                                <Grid Padding="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="10" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                       Grid.Column="1"
+                                       Grid.Row="0"
+                                       Grid.RowSpan="7"
+                                       Source="{Binding ImageSource}"
+                                       Aspect="AspectFit"
+                                       HeightRequest="60"
+                                       WidthRequest="80" />
+                                    <Label
+                                       Grid.Row="0"
+                                       Grid.Column="3"
+                                       Grid.ColumnSpan="2"
+                                       HorizontalOptions="End"
+                                       Margin="0,0,3,0"
+                                       Padding="4,0"
+                                       BackgroundColor="{StaticResource Primary}"
+                                       FontAttributes="Bold"
+                                       FontSize="12"
+                                       TextColor="White"
+                                       Text="{Binding Path=ID,                                              
+                                              StringFormat='{0}'}" />
+                                    <Label
+                                       Grid.Row="1"
+                                       Grid.Column="3"
+                                       Text="{Binding ImageSize}" />
+                                    <Label
+                                       Grid.Row="2"
+                                       Grid.Column="3"
+                                       Text="{Binding Level}" />
+                                    <Label
+                                       Grid.Row="3"
+                                       Grid.Column="3"
+                                       Text="{Binding Steps}" />
+                                    <Label
+                                       Grid.Row="4"
+                                       Grid.Column="3"
+                                       Text="{Binding ImageRatio}" />
+                                    <Label
+                                       Grid.Row="5"
+                                       Grid.Column="3"
+                                       Text="{Binding CreatedDateTime}" />
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Frame x:Name="statusBarFrame"
+                   Padding="0"
+                   BackgroundColor="LightGoldenrodYellow"
+                   Margin="0"
+                   BorderColor="DarkGray"
+                   CornerRadius="0"
+                   HasShadow="False"
+                   HeightRequest="20"
+                   >
+            <Grid Margin="0" Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="5" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    x:Name="labelInfor"
+                    Text="{Binding LabelInfor, Mode=TwoWay, StringFormat='{0}'}"
+                    FontSize="{StaticResource BottomLabelFontSize}"
+                    FontFamily="{StaticResource BottomLabelFontFamily}"
+                    HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="20"
+                    MinimumHeightRequest="20"
+                    HorizontalOptions="Start"
+                    Grid.Column="1"
+                    Margin="0,0,0,0"
+                    Padding="0"/>
+
+                <Label
+                    x:Name="labelTotal"
+                    Text="{Binding ItemCount, Mode=TwoWay, StringFormat='{0}'}"
+                    FontSize="{StaticResource BottomLabelFontSize}"
+                    FontFamily="{StaticResource BottomLabelFontFamily}"
+                    HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="20"
+                    MinimumHeightRequest="20"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Column="6"
+                    Margin="0,0,0,0"
+                    Padding="0"/>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentPage>

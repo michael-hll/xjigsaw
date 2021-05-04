@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XJigsaw.Views.SettingPage"
+    xmlns:resource="clr-namespace:XJigsaw.Resources"
+    Shell.NavBarHasShadow="True"
+    Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}">
+
+    <Shell.NavBarIsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" />
+    </Shell.NavBarIsVisible>
+
+    <StackLayout>
+
+        <Grid Margin="5,5,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="labelLevelTitle"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_SettingPictureLevel}"/>
+            <Label x:Name="labelLevelValue"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"                       
+                       Text="7"/>
+            <Stepper x:Name="stepperLevel"
+                         Grid.Row="0"
+                         Grid.Column="3"
+                         Minimum="3"
+                         Maximum="32"
+                         Increment="1"
+                         ValueChanged="stepperLevel_ValueChanged"
+                         Value="3"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"                         
+                         />
+            <Label x:Name="labelRatio"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalOptions="EndAndExpand"
+                       VerticalOptions="Center"
+                       Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_SettingPictureRatio}"/>
+            <Picker x:Name="pickerRatio"                       
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Start"
+                        Margin="0"                        
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        FontSize="Body"
+                        WidthRequest="60"                        
+                        SelectedIndexChanged="pickerRatio_SelectedIndexChanged" />
+            <Label x:Name="labelOpacityTitle"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_SettingPictureTransparent}"/>
+            <Label x:Name="labelOpacityValue"
+                       Grid.Row="2"
+                       Grid.Column="2"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Text="7"/>
+            <Stepper x:Name="stepperOpacity"
+                         Grid.Row="2"
+                         Grid.Column="3"
+                         Minimum="0.05"
+                         Maximum="1"
+                         Increment="0.05"
+                         ValueChanged="stepperOpacity_ValueChanged"
+                         Value="0.5"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"                         
+                         />
+            <Label x:Name="labelSound"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_SettingSound}"/>
+            <Switch x:Name="switchSound"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    IsToggled="{Binding IsPlaySound}"
+                    Toggled="switchSound_Toggled"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

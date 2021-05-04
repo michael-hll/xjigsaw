@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XJigsaw.Views.SourceImagePage"
+    xmlns:pinch="clr-namespace:Xamarin.Forms.PinchZoomImage;assembly=Xamarin.Forms.PinchZoomImage"
+    xmlns:resource="clr-namespace:XJigsaw.Resources"
+    Shell.NavBarHasShadow="True" 
+    BackgroundColor="Black"
+    Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}">
+
+    <Shell.NavBarIsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" />
+    </Shell.NavBarIsVisible>
+
+    <StackLayout>
+        <Frame VerticalOptions="FillAndExpand" Padding="0" CornerRadius="2">
+            <pinch:PinchZoom>
+                <pinch:PinchZoom.Content>
+                    <Image x:Name="sourceImage"
+                            Margin="0,0,0,0"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"/>
+                </pinch:PinchZoom.Content>
+            </pinch:PinchZoom>
+        </Frame>
+    </StackLayout>
+</ContentPage>
