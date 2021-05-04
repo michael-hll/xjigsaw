@@ -6,6 +6,7 @@ using XJigsaw.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XJigsaw.Resources;
+using XJigsaw.Helper;
 
 namespace XJigsaw.Views
 {

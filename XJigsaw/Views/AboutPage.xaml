@@ -15,25 +15,34 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <OnPlatform x:Key="LabelColor" x:TypeArguments="Color" Android="White" />
             <Color x:Key="Accent">#96d1ff</Color>
+            <Style x:Key="LabelTextColorStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LabelColor}" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
+    <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
                 <ContentView Padding="0,10,0,10" VerticalOptions="FillAndExpand">
                     <Image Aspect="AspectFit" Source="xjigsaw_about.png"  HeightRequest="100"/>
                 </ContentView>
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label x:Name="labelUserName" Text="{Binding UserName, StringFormat='{0}'}"/>
+            <StackLayout x:Name="labelContainer" Orientation="Vertical" Padding="30,2,30,24" Spacing="0" Margin="0,0" VerticalOptions="FillAndExpand">
+                <StackLayout.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color"
+                            Android="Black">
+                    </OnPlatform>
+                </StackLayout.BackgroundColor>
+                <Label x:Name="labelUserName" Text="{Binding UserName, StringFormat='{0}'}" Margin="0,25,0,5"/>
                 <Label x:Name="labelUserLevel" Text="{Binding UserLevel, StringFormat='{0}'}"/>
                 <Label x:Name="spaceHolder" Text="" HorizontalOptions="Center" HeightRequest="20" />
                 <Label x:Name="labelWarning" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Note}"
@@ -41,7 +50,12 @@
                 <Label x:Name="labelWarningDetails" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Warning}"
                        FontSize="12" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="30,15"/>
 
-                <Frame HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand">
+                <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand">
+                    <Frame.BackgroundColor>
+                        <OnPlatform x:TypeArguments="Color"
+                             Android="Black">
+                        </OnPlatform>
+                    </Frame.BackgroundColor>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
