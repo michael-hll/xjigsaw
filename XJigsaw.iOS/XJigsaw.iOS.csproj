@@ -106,9 +106,9 @@
     <BundleResource Include="Resources\stop.png" />
     <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
     <BundleResource Include="Resources\zh-CN.lproj\InfoPlist.strings" />
-    <BundleResource Include="Resources\xjigsasw_logo.png" />
-    <BundleResource Include="Resources\xjigsasw_logo%402x.png" />
-    <BundleResource Include="Resources\xjigsaw_logo%403x.png" />
+    <BundleResource Include="Resources\xjigsasw_about.png" />
+    <BundleResource Include="Resources\xjigsasw_about%402x.png" />
+    <BundleResource Include="Resources\xjigsaw_about%403x.png" />
     <BundleResource Include="Resources\jigsaw_bg.png" />
     <BundleResource Include="Resources\reset.png" />
     <BundleResource Include="Resources\shuffle.png" />

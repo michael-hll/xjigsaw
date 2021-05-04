@@ -25746,13 +25746,10 @@ namespace XJigsaw.Droid
 			public const int xamarin_logo = 2131165598;
 			
 			// aapt resource value: 0x7F07019F
-			public const int xjigsasw_logo = 2131165599;
+			public const int xjigsaw_about = 2131165599;
 			
 			// aapt resource value: 0x7F0701A0
-			public const int xjigsasw_logo2x = 2131165600;
-			
-			// aapt resource value: 0x7F0701A1
-			public const int xjigsaw_logo3x = 2131165601;
+			public const int xjigsaw_about2x = 2131165600;
 			
 			static Drawable()
 			{
