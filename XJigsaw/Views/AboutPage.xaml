@@ -15,10 +15,17 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <OnPlatform x:Key="LabelColor" x:TypeArguments="Color" Android="White" />
             <Color x:Key="Accent">#96d1ff</Color>
-            <Style x:Key="LabelTextColorStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource LabelColor}" />
+            <Color x:Key="AndroidLabelTextColor">Black</Color>
+            <Color x:Key="AndroidLayoutBGColor">White</Color>
+            <Style TargetType="Label">
+                <Setter Property="TextColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="{StaticResource AndroidLabelTextColor}" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -28,18 +35,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
-                <ContentView Padding="0,10,0,10" VerticalOptions="FillAndExpand">
-                    <Image Aspect="AspectFit" Source="xjigsaw_about.png"  HeightRequest="100"/>
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ContentView Padding="0,5,0,5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Image Aspect="AspectFit" Source="xjigsaw_about.png"  HeightRequest="100" HorizontalOptions="Center"/>
                 </ContentView>
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout x:Name="labelContainer" Orientation="Vertical" Padding="30,2,30,24" Spacing="0" Margin="0,0" VerticalOptions="FillAndExpand">
                 <StackLayout.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color"
-                            Android="Black">
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
                     </OnPlatform>
                 </StackLayout.BackgroundColor>
                 <Label x:Name="labelUserName" Text="{Binding UserName, StringFormat='{0}'}" Margin="0,25,0,5"/>
@@ -52,8 +59,8 @@
 
                 <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand">
                     <Frame.BackgroundColor>
-                        <OnPlatform x:TypeArguments="Color"
-                             Android="Black">
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
                         </OnPlatform>
                     </Frame.BackgroundColor>
                     <Grid>
