@@ -25728,28 +25728,25 @@ namespace XJigsaw.Droid
 			public const int stop = 2131165592;
 			
 			// aapt resource value: 0x7F070199
-			public const int success = 2131165593;
+			public const int tap = 2131165593;
 			
 			// aapt resource value: 0x7F07019A
-			public const int tap = 2131165594;
+			public const int test_custom_background = 2131165594;
 			
 			// aapt resource value: 0x7F07019B
-			public const int test_custom_background = 2131165595;
+			public const int tooltip_frame_dark = 2131165595;
 			
 			// aapt resource value: 0x7F07019C
-			public const int tooltip_frame_dark = 2131165596;
+			public const int tooltip_frame_light = 2131165596;
 			
 			// aapt resource value: 0x7F07019D
-			public const int tooltip_frame_light = 2131165597;
+			public const int xamarin_logo = 2131165597;
 			
 			// aapt resource value: 0x7F07019E
-			public const int xamarin_logo = 2131165598;
+			public const int xjigsaw_about = 2131165598;
 			
 			// aapt resource value: 0x7F07019F
-			public const int xjigsaw_about = 2131165599;
-			
-			// aapt resource value: 0x7F0701A0
-			public const int xjigsaw_about2x = 2131165600;
+			public const int xjigsaw_about2x = 2131165599;
 			
 			static Drawable()
 			{
@@ -27642,10 +27639,13 @@ namespace XJigsaw.Droid
 			public const int icon = 2131558400;
 			
 			// aapt resource value: 0x7F0D0001
-			public const int icon_round = 2131558401;
+			public const int icon432 = 2131558401;
 			
 			// aapt resource value: 0x7F0D0002
-			public const int launcher_foreground = 2131558402;
+			public const int icon_round = 2131558402;
+			
+			// aapt resource value: 0x7F0D0003
+			public const int launcher_foreground = 2131558403;
 			
 			static Mipmap()
 			{
