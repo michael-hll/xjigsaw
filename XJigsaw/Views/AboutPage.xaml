@@ -58,7 +58,7 @@
                 <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand">
                     <Frame.BackgroundColor>
                         <OnPlatform x:TypeArguments="Color">
-                            <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
+                            <On Platform="Android" Value="LightYellow" />
                         </OnPlatform>
                     </Frame.BackgroundColor>
                     <Grid>

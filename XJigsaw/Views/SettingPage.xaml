@@ -11,7 +11,46 @@
         <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" />
     </Shell.NavBarIsVisible>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Style TargetType="Label">
+                <Setter Property="TextColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="{StaticResource AndroidLabelTextColor}" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="TextColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="{StaticResource AndroidLabelTextColor}" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Stepper">
+                <Setter Property="Scale">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="0.8" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout>
+
+        <StackLayout.BackgroundColor>
+            <OnPlatform x:TypeArguments="Color">
+                <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
+            </OnPlatform>
+        </StackLayout.BackgroundColor>
 
         <Grid Margin="5,5,5,5">
             <Grid.RowDefinitions>
@@ -66,7 +105,6 @@
                         Margin="0"                        
                         Grid.Row="1"
                         Grid.Column="2"
-                        FontSize="Body"
                         WidthRequest="60"                        
                         SelectedIndexChanged="pickerRatio_SelectedIndexChanged" />
             <Label x:Name="labelOpacityTitle"
