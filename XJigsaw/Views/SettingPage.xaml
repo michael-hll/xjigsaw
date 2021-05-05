@@ -105,9 +105,15 @@
                         HorizontalTextAlignment="Start"
                         Margin="0"                        
                         Grid.Row="1"
-                        Grid.Column="2"
-                        WidthRequest="60"                        
-                        SelectedIndexChanged="pickerRatio_SelectedIndexChanged" />
+                        Grid.Column="2"                       
+                        SelectedIndexChanged="pickerRatio_SelectedIndexChanged">
+                <Picker.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="{StaticResource FontDefaultSizeXS}" />
+                        <On Platform="iOS" Value="{StaticResource FontDefaultSizeMD}" />
+                    </OnPlatform>
+                </Picker.FontSize>
+            </Picker>
             <Label x:Name="labelOpacityTitle"
                        Grid.Row="2"
                        Grid.Column="1"
@@ -140,7 +146,7 @@
             <Switch x:Name="switchSound"
                     Grid.Row="3"
                     Grid.Column="2"
-                    IsToggled="{Binding IsPlaySound}"
+                    IsToggled="{Binding IsPlaySound}"                    
                     Toggled="switchSound_Toggled"/>
         </Grid>
     </StackLayout>
