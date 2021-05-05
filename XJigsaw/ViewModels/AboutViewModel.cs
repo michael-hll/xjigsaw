@@ -34,7 +34,14 @@ namespace XJigsaw.ViewModels
 
             MailToCommand = new Command(() =>
             {
-                Launcher.OpenAsync(new Uri($"mailto:{EmailAddress}?subject=X Jigsaw {AppVersion}"));
+                try
+                {
+                    Launcher.OpenAsync(new Uri($"mailto:{EmailAddress}?subject=X Jigsaw {AppVersion}"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Sent eamil exception: {ex.Message}");
+                }
             });
 
             PropertyChanged += AboutViewModel_PropertyChanged;
