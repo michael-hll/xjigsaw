@@ -18,10 +18,20 @@
             <pinch:PinchZoom>
                 <pinch:PinchZoom.Content>
                     <Image x:Name="sourceImage"
-                            Margin="0,0,0,0"
-                            Aspect="AspectFit"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Start"/>
+                            Margin="0,0,0,0">
+                        <Image.VerticalOptions>
+                            <OnPlatform x:TypeArguments="LayoutOptions">
+                                <On Platform="iOS" Value="Start" />
+                                <On Platform="Android" Value="Fill" />
+                            </OnPlatform>
+                        </Image.VerticalOptions>
+                        <Image.Aspect>
+                            <OnPlatform x:TypeArguments="Aspect">
+                                <On Platform="iOS" Value="AspectFit" />
+                                <On Platform="Android" Value="AspectFit" />
+                            </OnPlatform>
+                        </Image.Aspect>
+                    </Image>
                 </pinch:PinchZoom.Content>
             </pinch:PinchZoom>
         </Frame>
