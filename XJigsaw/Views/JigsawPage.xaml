@@ -5,6 +5,7 @@
     x:Class="XJigsaw.Views.JigsawPage"
     xmlns:vm="clr-namespace:XJigsaw.ViewModels"
     xmlns:resource="clr-namespace:XJigsaw.Resources"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     Shell.TabBarIsVisible="True"
     Shell.NavBarHasShadow="True"    
     Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}"
@@ -77,18 +78,21 @@
                                  Grid.Column="1"
                                  HeightRequest="30"
                                  WidthRequest="30"
+                                 BackgroundColor="Transparent"
                                  Margin="{StaticResource TopLabelMargin}"
                                  Clicked="OnSelectImageClicked"/>
                     <ImageButton x:Name="shuffleButton" Source="shuffle.png"                                 
                                  Grid.Column="2"
                                  HeightRequest="30"
                                  WidthRequest="30"
+                                 BackgroundColor="Transparent"
                                  Margin="{StaticResource TopLabelMargin}"
                                  Clicked="OnRandomizeButtonClicked"/>
                     <ImageButton x:Name="resetButton" Source="reset.png"                                 
                                  Grid.Column="3"
                                  HeightRequest="30"
                                  WidthRequest="30"
+                                 BackgroundColor="Transparent"
                                  Margin="{StaticResource TopLabelMargin}"
                                  Clicked="OnReverseButtonClicked"/>
                     <ImageButton x:Name="saveButton"
@@ -96,6 +100,7 @@
                                  Grid.Column="4"
                                  HeightRequest="25"
                                  WidthRequest="25"
+                                 BackgroundColor="Transparent"
                                  Margin="{StaticResource TopLabelMargin}"
                                  Clicked="OnSaveButtonClicked"/>
                     <ImageButton x:Name="playButton"
@@ -103,6 +108,7 @@
                                  Grid.Column="5"
                                  HeightRequest="30"
                                  WidthRequest="30"
+                                 BackgroundColor="Transparent"
                                  Margin="{StaticResource TopLabelMargin}"
                                  Clicked="OnPlaybuttonClicked"/>
                     <Frame x:Name="timerFrame" Grid.Column="7" Grid.Row="0"
