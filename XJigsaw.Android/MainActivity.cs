@@ -1,20 +1,18 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Android.Gms.Ads;
-using MediaManager;
 using Android.Content;
+using Android.Content.Res;
+using Android.Util;
 
 namespace XJigsaw.Droid
 {
     [Activity(Label = "XJigsaw", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -26,6 +24,7 @@ namespace XJigsaw.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             MobileAds.Initialize(ApplicationContext);
+            initFontScale();
             LoadApplication(new App());
         }
 
@@ -41,6 +40,18 @@ namespace XJigsaw.Droid
             base.OnActivityResult(requestCode, resultCode, data);
 
             Stormlion.ImageCropper.Droid.Platform.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        private void initFontScale()
+        {
+            Configuration configuration = Resources.Configuration;
+            configuration.FontScale = (float)1;
+            //0.85 small, 1 standard, 1.15 big，1.3 more bigger ，1.45 supper big 
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager.DefaultDisplay.GetMetrics(metrics);
+            metrics.ScaledDensity = configuration.FontScale * metrics.Density;
+            BaseContext.ApplicationContext.CreateConfigurationContext(configuration);
+            BaseContext.Resources.DisplayMetrics.SetTo(metrics);
         }
     }
 }

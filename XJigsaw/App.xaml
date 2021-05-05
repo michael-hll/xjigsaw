@@ -8,8 +8,20 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="AndroidLabelTextColor">Black</Color>
+            <Color x:Key="AndroidLayoutBGColor">White</Color>
+            <x:Double x:Key="FontDefaultSizeXXXXS">8</x:Double>
+            <x:Double x:Key="FontDefaultSizeXXXS">10</x:Double>
+            <x:Double x:Key="FontDefaultSizeXXS">12</x:Double>
+            <x:Double x:Key="FontDefaultSizeXS">14</x:Double>
+            <x:Double x:Key="FontDefaultSizeSM">16</x:Double>
+            <x:Double x:Key="FontDefaultSizeMD">20</x:Double>
+            <x:Double x:Key="FontDefaultSizeLG">24</x:Double>
+            <x:Double x:Key="FontDefaultSizeXL">32</x:Double>
+            <x:Double x:Key="FontDefaultSizeXXL">40</x:Double>
+            <x:Double x:Key="FontDefaultSizeXXXL">48</x:Double>
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="Red"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -27,6 +39,6 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

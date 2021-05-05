@@ -16,8 +16,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
-            <Color x:Key="AndroidLabelTextColor">Black</Color>
-            <Color x:Key="AndroidLayoutBGColor">White</Color>
             <Style TargetType="Label">
                 <Setter Property="TextColor">
                     <Setter.Value>

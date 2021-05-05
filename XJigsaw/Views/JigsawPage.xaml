@@ -129,13 +129,13 @@
                             />
 
             <Frame x:Name="statusBarFrame"
-                   Padding="5"
+                   Padding="0"
                    BackgroundColor="LightGoldenrodYellow"
                    Margin="0"
                    BorderColor="DarkGray"
                    CornerRadius="0"
                    HasShadow="False"
-                   HeightRequest="10"
+                   HeightRequest="20"
                    MinimumHeightRequest="30"
                    >
                 <Grid Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
