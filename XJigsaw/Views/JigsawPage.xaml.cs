@@ -34,14 +34,13 @@ namespace XJigsaw.Views
         public static double ContainerHeight { get; set; }
         readonly ISimpleAudioPlayer tapPlayer = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
         readonly ISimpleAudioPlayer successPlayer = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
-        readonly AdHandler adHandler = null;
+        readonly AdMobService adHandler = null;
         readonly Image absolute_background = new Image
         {
             Source = ImageSource.FromFile("startup_bg.png"),
             Opacity = 0.5,
             Aspect = Aspect.AspectFill
         };
-        readonly bool isPlayAd = true;
 
         public AbsoluteLayout JigsawLayout
         {
@@ -173,7 +172,7 @@ namespace XJigsaw.Views
             tapPlayer.Load("tap.wav");
             successPlayer.Load("success.mp3");
 
-            adHandler = new AdHandler(this);
+            adHandler = new AdMobService(this);
         }
 
         public void SaveCurrentJigsaw(bool isAdPlayCompleted, bool isFailedLoading = false, string failedMsg = "")
@@ -191,7 +190,7 @@ namespace XJigsaw.Views
                         CrossToastPopUp.Current.ShowToastMessage(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_SaveJigsawNotes);
                     else
                     {
-                        Task.Run(() => SaveCurrentJigsawAfterAd()).Wait();
+                        //Task.Run(() => SaveCurrentJigsawAfterAd()).Wait();                        
                     }
                 }
             }
@@ -202,9 +201,7 @@ namespace XJigsaw.Views
             finally
             {
                 if (isFailedLoading)
-                    DisplayAlert(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_Warning,
-                        $"{XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_SaveJigsawSucceed}: {failedMsg}",
-                        XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_OK);
+                    CrossToastPopUp.Current.ShowToastMessage(failedMsg);
                 saveButton.IsVisible = true;
                 IsProcessing = false;
             }
@@ -815,7 +812,8 @@ namespace XJigsaw.Views
         {
             saveButton.IsVisible = false;
             IsProcessing = true;
-            if (isPlayAd)
+            if ((Utility.IsiOS() && AdMobService.IsiOSPlayAd) ||
+                (!Utility.IsiOS() && AdMobService.IsAndroidPlayAd))
                 adHandler.PlayAds();
             else
                 SaveCurrentJigsaw(true);

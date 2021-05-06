@@ -18,6 +18,7 @@ namespace XJigsaw
 {
     public partial class App : Application
     {
+        public static bool IsBackground = false;
 
         static Database database;
 
@@ -66,17 +67,23 @@ namespace XJigsaw
 
         protected override void OnStart()
         {
-            Console.WriteLine("OnStart");
+            IsBackground = false;
+            base.OnStart();
+            //Console.WriteLine("OnStart");
         }
 
         protected override void OnSleep()
         {
-            Console.WriteLine("OnSleep");
+            IsBackground = true;
+            base.OnSleep();
+            //Console.WriteLine("OnSleep");
         }
 
         protected override void OnResume()
         {
-            Console.WriteLine("OnResume");
+            IsBackground = false;
+            base.OnResume();
+            //Console.WriteLine("OnResume");
         }
 
         async Task LoadData()

@@ -6,10 +6,20 @@ using Xamarin.Forms;
 
 namespace XJigsaw.Helper
 {
-    public class AdHandler
+    public class AdMobService
     {
         readonly JigsawPage jigsawPage;
-        public AdHandler(ContentPage page)
+
+        public static readonly bool IsiOSPlayAd = true;
+        public static readonly bool IsiOSUsingTestAd = true;
+        public static readonly bool IsAndroidPlayAd = false;
+        public static readonly bool IsAndroidUsingTestAd = true;
+
+        const string IOS_AD_UNIT = "ca-app-pub-2979719193529190/4555456327";
+        const string ANDROID_AD_UNIT = "ca-app-pub-2979719193529190/2249808873";
+        const string TEST_AD_UNIT = "ca-app-pub-3940256099942544/5224354917";
+
+        public AdMobService(ContentPage page)
         {
             jigsawPage = (JigsawPage)page;
 
@@ -72,7 +82,24 @@ namespace XJigsaw.Helper
 
         public void PlayAds()
         {
-            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-2979719193529190/4555456327");
+            // iOS
+            if (Utility.IsiOS() && IsiOSPlayAd)
+            {
+                if (IsiOSUsingTestAd)
+                    CrossMTAdmob.Current.LoadRewardedVideo(TEST_AD_UNIT);
+                else
+                    CrossMTAdmob.Current.LoadRewardedVideo(IOS_AD_UNIT);
+            }
+
+            // Android
+            if (!Utility.IsiOS() && IsAndroidPlayAd)
+            {
+                if (IsAndroidUsingTestAd)
+                    CrossMTAdmob.Current.LoadRewardedVideo(TEST_AD_UNIT);
+                else
+                    CrossMTAdmob.Current.LoadRewardedVideo(ANDROID_AD_UNIT);
+            }
+
             jigsawPage.NotifyPlayAdStatus(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_AD_StartLoading);
         }
     }
