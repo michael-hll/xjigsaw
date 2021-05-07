@@ -11,7 +11,7 @@ namespace XJigsaw.Helper
         readonly JigsawPage jigsawPage;
 
         public static readonly bool IsiOSPlayAd = true;
-        public static readonly bool IsiOSUsingTestAd = true;
+        public static readonly bool IsiOSUsingTestAd = false;
         public static readonly bool IsAndroidPlayAd = true;
         public static readonly bool IsAndroidUsingTestAd = false;
 
