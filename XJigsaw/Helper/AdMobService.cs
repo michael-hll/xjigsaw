@@ -12,8 +12,8 @@ namespace XJigsaw.Helper
 
         public static readonly bool IsiOSPlayAd = true;
         public static readonly bool IsiOSUsingTestAd = true;
-        public static readonly bool IsAndroidPlayAd = false;
-        public static readonly bool IsAndroidUsingTestAd = true;
+        public static readonly bool IsAndroidPlayAd = true;
+        public static readonly bool IsAndroidUsingTestAd = false;
 
         const string IOS_AD_UNIT = "ca-app-pub-2979719193529190/4555456327";
         const string ANDROID_AD_UNIT = "ca-app-pub-2979719193529190/2249808873";

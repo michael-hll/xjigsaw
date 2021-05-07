@@ -9,7 +9,7 @@ using Android.Util;
 
 namespace XJigsaw.Droid
 {
-    [Activity(Label = "XJigsaw", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Label = "@string/app_name", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
@@ -20,10 +20,11 @@ namespace XJigsaw.Droid
 
             base.OnCreate(savedInstanceState);
 
+            MobileAds.Initialize(ApplicationContext);
             Stormlion.ImageCropper.Droid.Platform.Init();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            MobileAds.Initialize(ApplicationContext);
+
             initFontScale();
             LoadApplication(new App());
         }
