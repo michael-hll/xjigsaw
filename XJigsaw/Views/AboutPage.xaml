@@ -41,7 +41,7 @@
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
-            <StackLayout x:Name="labelContainer" Orientation="Vertical" Padding="30,2,30,24" Spacing="0" Margin="0,0" VerticalOptions="FillAndExpand">
+            <StackLayout x:Name="labelContainer" Orientation="Vertical" Padding="20,2,20,20" Spacing="0" Margin="0,0" VerticalOptions="FillAndExpand">
                 <StackLayout.BackgroundColor>
                     <OnPlatform x:TypeArguments="Color">
                         <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
@@ -55,13 +55,13 @@
                 <Label x:Name="labelWarningDetails" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Warning}"
                        FontSize="12" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="30,15"/>
 
-                <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand">
+                <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand" Margin="0" Padding="20">
                     <Frame.BackgroundColor>
                         <OnPlatform x:TypeArguments="Color">
                             <On Platform="Android" Value="LightYellow" />
                         </OnPlatform>
                     </Frame.BackgroundColor>
-                    <Grid>
+                    <Grid ColumnSpacing="5" RowSpacing="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -71,13 +71,13 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Label x:Name="labelVersion" Grid.Row="0" Grid.Column="0" HorizontalOptions="End" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Version}" FontSize="15"/>
-                        <Label x:Name="labelVersionNumber" Grid.Row="0" Grid.Column="1" Text="{Binding AppVersion}" FontSize="15"/>
-                        <Label x:Name="labelAuthor" Grid.Row="1" Grid.Column="0" HorizontalOptions="End" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Author}" FontSize="15"/>
-                        <Label x:Name="labelAuthorName" Grid.Row="1" Grid.Column="1" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Author_Name}" FontSize="15"/>
-                        <Label x:Name="labelEmail" Grid.Row="2" Grid.Column="0" HorizontalOptions="End" Text="Email:" FontSize="15"/>
-                        <Label x:Name="labelEmailAdd" Grid.Row="2" Grid.Column="1" Text="riyueweiguang@outlook.com" FontSize="15"
-                               TextDecorations="Underline" TextColor="DeepSkyBlue" />
+                        <Label x:Name="labelVersion" Grid.Row="0" Grid.Column="0" HorizontalOptions="End" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Version}" FontSize="{StaticResource FontDefaultSizeXS}"/>
+                        <Label x:Name="labelVersionNumber" Grid.Row="0" Grid.Column="1" Text="{Binding AppVersion}" FontSize="{StaticResource FontDefaultSizeXS}"/>
+                        <Label x:Name="labelAuthor" Grid.Row="1" Grid.Column="0" HorizontalOptions="End" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Author}" FontSize="{StaticResource FontDefaultSizeXS}"/>
+                        <Label x:Name="labelAuthorName" Grid.Row="1" Grid.Column="1" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Author_Name}" FontSize="{StaticResource FontDefaultSizeXS}"/>
+                        <Label x:Name="labelEmail" Grid.Row="2" Grid.Column="0" HorizontalOptions="End" Text="Email:" FontSize="{StaticResource FontDefaultSizeXS}"/>
+                        <Label x:Name="labelEmailAdd" Grid.Row="2" Grid.Column="1" Text="riyueweiguang@outlook.com" FontSize="{StaticResource FontDefaultSizeXS}"
+                               TextDecorations="Underline" TextColor="DeepSkyBlue" HorizontalOptions="StartAndExpand"/>
                     </Grid>
                 </Frame>
 
