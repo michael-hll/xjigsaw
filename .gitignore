@@ -1,0 +1,29 @@
+.DS_Store
+.vs/
+AndroidKeys/
+AppStore Screenshots/
+IPAs/
+ImageCropper.Forms-master/.gitattributes
+ImageCropper.Forms-master/.gitignore
+ImageCropper.Forms-master/Binding/TOCropViewController/Native References/
+ImageCropper.Forms-master/ImageCropper.Forms.sln
+ImageCropper.Forms-master/ImageCropper.nuspec
+ImageCropper.Forms-master/LICENSE.md
+ImageCropper.Forms-master/MigrationBackup/
+ImageCropper.Forms-master/README.md
+ImageCropper.Forms-master/ScreenShots/
+ImageCropper.Forms-master/Test/
+ImageCropper.Forms-master/nuget.exe
+ImageRealtedProject/
+XJigsaw.Android/bin/
+XJigsaw.Android/obj/
+XJigsaw.iOS/bin/
+XJigsaw.iOS/Resources/Default-568h@2x.png
+XJigsaw.iOS/Resources/Default-Portrait.png
+XJigsaw.iOS/Resources/Default-Portrait@2x.png
+XJigsaw.iOS/Resources/Default.png
+XJigsaw.iOS/Resources/Default@2x.png
+XJigsaw.iOS/mono_crash.11a6748113.0.json
+XJigsaw.iOS/obj/
+XJigsaw/bin/
+XJigsaw/obj/
