@@ -14,7 +14,7 @@ namespace XJigsaw.Helper
         public static readonly bool IsiOSPlayAd = true;
         public static readonly bool IsiOSUsingTestAd = false;
 
-        // Android AD settings
+        // Android AD settings.
         public static readonly bool IsAndroidPlayAd = true;
         public static readonly bool IsAndroidUsingTestAd = false;
 
