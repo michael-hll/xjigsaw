@@ -3,17 +3,17 @@
 AndroidKeys/
 AppStore Screenshots/
 IPAs/
-ImageCropper.Forms-master/.gitattributes
-ImageCropper.Forms-master/.gitignore
-ImageCropper.Forms-master/Binding/TOCropViewController/Native References/
-ImageCropper.Forms-master/ImageCropper.Forms.sln
-ImageCropper.Forms-master/ImageCropper.nuspec
-ImageCropper.Forms-master/LICENSE.md
-ImageCropper.Forms-master/MigrationBackup/
-ImageCropper.Forms-master/README.md
-ImageCropper.Forms-master/ScreenShots/
-ImageCropper.Forms-master/Test/
-ImageCropper.Forms-master/nuget.exe
+#ImageCropper.Forms-master/.gitattributes
+#ImageCropper.Forms-master/.gitignore
+#ImageCropper.Forms-master/Binding/TOCropViewController/Native References/
+#ImageCropper.Forms-master/ImageCropper.Forms.sln
+#ImageCropper.Forms-master/ImageCropper.nuspec
+#ImageCropper.Forms-master/LICENSE.md
+#ImageCropper.Forms-master/MigrationBackup/
+#ImageCropper.Forms-master/README.md
+#ImageCropper.Forms-master/ScreenShots/
+#ImageCropper.Forms-master/Test/
+#ImageCropper.Forms-master/nuget.exe
 ImageRealtedProject/
 XJigsaw.Android/bin/
 XJigsaw.Android/obj/
