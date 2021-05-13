@@ -36,7 +36,7 @@
                 <Setter Property="Scale">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android" Value="0.8" />
+                            <On Platform="Android" Value="0.6" />
                             <On Platform="iOS" Value="1" />
                         </OnPlatform>
                     </Setter.Value>
@@ -65,8 +65,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -74,7 +74,7 @@
                        Grid.Row="0"
                        Grid.Column="1"
                        HorizontalOptions="End"
-                       VerticalOptions="Center"
+                       VerticalOptions="Center"                       
                        Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_SettingPictureLevel}"/>
             <Label x:Name="labelLevelValue"
                        Grid.Row="0"
@@ -90,7 +90,7 @@
                          Increment="1"
                          ValueChanged="stepperLevel_ValueChanged"
                          Value="3"
-                         HorizontalOptions="Start"
+                         HorizontalOptions="End"
                          VerticalOptions="Center"                         
                          />
             <Label x:Name="labelRatio"
@@ -134,7 +134,7 @@
                          Increment="0.05"
                          ValueChanged="stepperOpacity_ValueChanged"
                          Value="0.5"
-                         HorizontalOptions="Start"
+                         HorizontalOptions="End"
                          VerticalOptions="Center"                         
                          />
             <Label x:Name="labelSound"
@@ -146,6 +146,7 @@
             <Switch x:Name="switchSound"
                     Grid.Row="3"
                     Grid.Column="2"
+                    HorizontalOptions="Start"
                     IsToggled="{Binding IsPlaySound}"                    
                     Toggled="switchSound_Toggled"/>
         </Grid>
