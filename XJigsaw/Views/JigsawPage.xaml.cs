@@ -445,6 +445,12 @@ namespace XJigsaw.Views
 
         async void OnContainerSizeChanged(object sender, EventArgs args)
         {
+            /* We need to fix a bug in Android emulator issue */
+            /* For some unknow reason the SizeChanged event was triggered multiple times in a Android emulatore device */
+            /* So if we dectect the current jigsaw has been built and filled then we just return */
+            if (!Utility.IsiOS() && DeviceInfo.DeviceType == DeviceType.Virtual)
+                if (CurrentJigsaw.IsApplied) return;
+
             View container = (View)sender;
 
             /* Get some testing data */
@@ -930,9 +936,6 @@ namespace XJigsaw.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            if (!Utility.IsiOS() && DeviceInfo.DeviceType == DeviceType.Virtual)
-                await Task.Delay(TimeSpan.FromSeconds(0.1));
 
             if (isContainerResized == true && CurrentJigsaw != null &&
                 CurrentJigsaw.IsSelected == true && CurrentJigsaw.IsApplied == false && CurrentJigsaw.IsSelectedItemNotProcessed == true)

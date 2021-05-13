@@ -6,6 +6,8 @@ using Android.Gms.Ads;
 using Android.Content;
 using Android.Content.Res;
 using Android.Util;
+using Android.Views;
+using Xamarin.Essentials;
 
 namespace XJigsaw.Droid
 {
@@ -29,6 +31,16 @@ namespace XJigsaw.Droid
 
             initFontScale();
             LoadApplication(new App());
+
+            /* Fixed a android emulator bug */
+            /* When in android emulator the device status bar will be mixed with
+             * content view for some times and this will triger 
+             * contentview size changed event and thus triger other issues */
+            if (DeviceInfo.DeviceType == DeviceType.Virtual)
+            {
+                Window.AddFlags(WindowManagerFlags.Fullscreen);
+                Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
