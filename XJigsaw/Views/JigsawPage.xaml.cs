@@ -14,6 +14,7 @@ using XJigsaw.ViewModels;
 using Stormlion.ImageCropper;
 using Xamarin.Forms;
 using XJigsaw.Resources;
+using Xamarin.Essentials;
 
 namespace XJigsaw.Views
 {
@@ -134,7 +135,7 @@ namespace XJigsaw.Views
             else
             {
                 chooseImageButton.IsVisible = !IsGameMode;
-                resetButton.IsVisible = !IsGameMode && CurrentJigsaw.IsUpdated;
+                resetButton.IsVisible = !IsGameMode && CurrentJigsaw.IsTilePositionChanged;
                 saveButton.IsVisible = !IsGameMode;
                 timerFrame.IsVisible = IsGameMode;
                 playButton.IsVisible = true;
@@ -216,7 +217,7 @@ namespace XJigsaw.Views
         {
             JigsawPage.CurrentJigsaw.LocationsInString = Tile.LocationsToString();
             JigsawPage.CurrentJigsaw.Steps = Steps;
-            JigsawPage.CurrentJigsaw.IsJigsawInitiallized = true;
+            JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
             JigsawPage.CurrentJigsaw.IsDeleted = false;
 
             await App.Database.SaveJigsawAsync(JigsawPage.CurrentJigsaw);
@@ -285,7 +286,7 @@ namespace XJigsaw.Views
                     DisplayAlert(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_Infor,
                         $"{XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_Congratulation}! {totalTime} {newLevel} {newRecord}", XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_Confirm);
                 }
-                if (jigsaw.IsJigsawInitiallized == false && App.ShellInstance.JigsawSettings.IsPlaySound)
+                if (jigsaw.IsTilePositionInitial == false && App.ShellInstance.JigsawSettings.IsPlaySound)
                     successPlayer.Play();
             }
             else
@@ -445,6 +446,19 @@ namespace XJigsaw.Views
         async void OnContainerSizeChanged(object sender, EventArgs args)
         {
             View container = (View)sender;
+
+            /* Get some testing data */
+            /*
+            Console.WriteLine($"MainPage Width: {Application.Current.MainPage.Width}");
+            Console.WriteLine($"MainPage Height: {Application.Current.MainPage.Height}");
+            Console.WriteLine($"ContentView Width: {container.Width}");
+            Console.WriteLine($"ContentView Height: {container.Height}");
+            Console.WriteLine($"Toobar Width: {ToolBarFrame.Width}");
+            Console.WriteLine($"Toobar Height: {ToolBarFrame.Height}");
+            Console.WriteLine($"StatusBar Width: {StatusBarFrame.Width}");
+            Console.WriteLine($"StatusBar Height: {StatusBarFrame.Height}");
+            */
+
             double width = container.Width;
             double height = container.Height;
             ContainerWidth = width;
@@ -452,8 +466,7 @@ namespace XJigsaw.Views
             isContainerResized = false;
 
             // Orient StackLayout based on portrait/landscape mode.
-            stackLayout.Orientation = (width < height) ? StackOrientation.Vertical :
-                                                         StackOrientation.Horizontal;
+            stackLayout.Orientation = StackOrientation.Vertical;
             InitialImageRatio(width, height);
             absoluteLayoutResize(container);
 
@@ -483,13 +496,16 @@ namespace XJigsaw.Views
 
         void absoluteLayoutResize(View container)
         {
+            // container is the ConventView, it includes the
+            // ToolBar, Progress Bar, AbsoluteLayout, Status Bar
+            // They are all in a StackLayout with Vertical: FillAndExpand configurations
+
             double width = container.Width;
             double height = container.Height;
             if (width < 0 || height < 0) return;
 
             // Orient StackLayout based on portrait/landscape mode.
-            stackLayout.Orientation = (width < height) ? StackOrientation.Vertical :
-                                                         StackOrientation.Horizontal;
+            stackLayout.Orientation = StackOrientation.Vertical;
 
             if (stackLayout.Orientation == StackOrientation.Vertical)
             {
@@ -627,8 +643,8 @@ namespace XJigsaw.Views
             {
                 IsProcessing = true;
 
-                JigsawPage.CurrentJigsaw.IsUpdated = true;
-                JigsawPage.CurrentJigsaw.IsJigsawInitiallized = false;
+                JigsawPage.CurrentJigsaw.IsTilePositionChanged = true;
+                JigsawPage.CurrentJigsaw.IsTilePositionInitial = false;
 
                 await ShiftIntoEmpty(tappedTile.Row, tappedTile.Col, 200);
 
@@ -729,7 +745,7 @@ namespace XJigsaw.Views
             }
             if (isGameMode == false || (isGameMode == true && isNewGame == true))
             {
-                JigsawPage.CurrentJigsaw.IsUpdated = true;
+                JigsawPage.CurrentJigsaw.IsTilePositionChanged = true;
                 ShowHideControls();
                 RandomizeTiles(100);
             }
@@ -746,7 +762,7 @@ namespace XJigsaw.Views
                 await ShiftIntoEmpty(rand.Next(NUM), emptyCol, 1);
                 await ShiftIntoEmpty(emptyRow, rand.Next(NUM), 1);
             }
-            CurrentJigsaw.IsUpdated = true;
+            CurrentJigsaw.IsTilePositionChanged = true;
             Steps = 0;
             if (isGameMode)
             {
@@ -777,7 +793,7 @@ namespace XJigsaw.Views
                 progressBar.ProgressColor = Color.Orange;
                 progressBar.Progress = 0;
                 int i = 0;
-                CurrentJigsaw.IsJigsawInitiallized = true;
+                CurrentJigsaw.IsTilePositionInitial = true;
                 JigsawPage.CurrentJigsaw.IsDeleted = false;
 
                 // Add background image
@@ -801,7 +817,7 @@ namespace XJigsaw.Views
 
                 await FillGrid((View)absoluteLayout.Parent);
 
-                CurrentJigsaw.IsUpdated = false;
+                CurrentJigsaw.IsTilePositionChanged = false;
                 ShowHideControls();
 
                 UpdateStatusBar(CurrentJigsaw);
@@ -880,7 +896,7 @@ namespace XJigsaw.Views
                         SourceImagePage.SourceImage.Source = ImageSource.FromFile(imageFile);
                         Size imageSize = Utility.GetImageSize(imageFile);
                         JigsawPage.CurrentJigsaw = new Jigsaw();
-                        JigsawPage.CurrentJigsaw.IsJigsawInitiallized = true;
+                        JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
                         JigsawPage.CurrentJigsaw.IsDeleted = false;
                         JigsawPage.CurrentJigsaw.Bytes = File.ReadAllBytes(imageFile);
                         IEditableImage imageEdit = await CrossImageEdit.Current.CreateImageAsync(JigsawPage.CurrentJigsaw.Bytes);
@@ -915,10 +931,13 @@ namespace XJigsaw.Views
         {
             base.OnAppearing();
 
+            if (!Utility.IsiOS() && DeviceInfo.DeviceType == DeviceType.Virtual)
+                await Task.Delay(TimeSpan.FromSeconds(0.1));
+
             if (isContainerResized == true && CurrentJigsaw != null &&
-                CurrentJigsaw.IsSelected == true && CurrentJigsaw.IsApplied == false && CurrentJigsaw.IsProcessing == true)
+                CurrentJigsaw.IsSelected == true && CurrentJigsaw.IsApplied == false && CurrentJigsaw.IsSelectedItemNotProcessed == true)
             {
-                CurrentJigsaw.IsProcessing = false; // in order to prevent the OnAppearing logic exec multiple times
+                CurrentJigsaw.IsSelectedItemNotProcessed = false; // in order to prevent the OnAppearing logic exec multiple times
 
                 absoluteLayoutResize((View)stackLayout.Parent);
 
@@ -929,6 +948,7 @@ namespace XJigsaw.Views
             }
             else if (CurrentJigsaw != null && CurrentJigsaw.IsDeleted)
             {
+                // Inorder to udpate the jigsaw ID to empty
                 UpdateStatusBar(JigsawPage.CurrentJigsaw);
             }
 

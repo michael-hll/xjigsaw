@@ -69,7 +69,7 @@ namespace XJigsaw.Models
             if (jigsaw.ID != 0)
             {
                 jigsaw.UpdatedDateTime = DateTime.Now.ToString(Utility.DATETIME_FORMAT);
-                jigsaw.IsUpdated = false;
+                jigsaw.IsTilePositionChanged = false;
                 return databaseConn.UpdateAsync(jigsaw);
             }
             else

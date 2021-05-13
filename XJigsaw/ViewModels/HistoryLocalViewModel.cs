@@ -57,9 +57,9 @@ namespace XJigsaw.ViewModels
             JigsawPage.CurrentJigsaw.IsLoaded = false;
             JigsawPage.CurrentJigsaw.IsSelected = true;
             JigsawPage.CurrentJigsaw.IsApplied = false;
-            JigsawPage.CurrentJigsaw.IsJigsawInitiallized = true;
+            JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
             JigsawPage.CurrentJigsaw.IsDeleted = false;
-            JigsawPage.CurrentJigsaw.IsProcessing = true;
+            JigsawPage.CurrentJigsaw.IsSelectedItemNotProcessed = true;
             App.ShellInstance.JigsawSettings.CurrentJigsawId = JigsawPage.CurrentJigsaw.ID;
             await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);
             var fileFullName = Path.Combine(Utility.IMAGE_TEMP_FOLDER, Utility.CURRENT_SOURCE_FILE_NAME);
@@ -84,7 +84,7 @@ namespace XJigsaw.ViewModels
                 if (JigsawPage.CurrentJigsaw.ID == item.ID)
                 {
                     JigsawPage.CurrentJigsaw.ID = 0;
-                    JigsawPage.CurrentJigsaw.IsJigsawInitiallized = true;
+                    JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
                     JigsawPage.CurrentJigsaw.IsDeleted = true;
                     App.ShellInstance.JigsawSettings.CurrentJigsawId = 0;
                     await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);

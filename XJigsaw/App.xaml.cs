@@ -173,7 +173,7 @@ namespace XJigsaw
             JigsawPage.CurrentJigsaw.IsLoaded = true;
             JigsawPage.CurrentJigsaw.IsSelected = false;
             JigsawPage.CurrentJigsaw.IsApplied = false;
-            JigsawPage.CurrentJigsaw.IsJigsawInitiallized = true;
+            JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
 
             // Get all level details
             //await App.Database.DeleteAllLevels();

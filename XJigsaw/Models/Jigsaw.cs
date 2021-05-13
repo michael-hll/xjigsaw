@@ -25,20 +25,53 @@ namespace XJigsaw.Models
         public string CreatedDateTime { get; set; }
         public string UpdatedDateTime { get; set; }
 
+        /// <summary>
+        /// To tell if this jigsaw is from saved history.
+        /// </summary>
         [Ignore]
         public bool IsSelected { get; set; }
+
+        /// <summary>
+        /// To tell if this jigsaw is from app startup load.
+        /// </summary>
         [Ignore]
         public bool IsLoaded { get; set; }
+
+        /// <summary>
+        /// To tell if this jigsaw has been built and filled into the jigsaw panel container.
+        /// </summary>
         [Ignore]
         public bool IsApplied { get; set; }
+
+        /// <summary>
+        /// To tell if the jigsaw tile position in intial state. If user tapped then
+        /// it's value is false, otherwise it's ture
+        /// </summary>
         [Ignore]
-        public bool IsJigsawInitiallized { get; set; }
+        public bool IsTilePositionInitial { get; set; }
+
+        /// <summary>
+        /// To tell if this jigsaw has been deleted.
+        /// </summary>
         [Ignore]
         public bool IsDeleted { get; set; }
+
+        /// <summary>
+        /// To tell if the selected jigsaw has been built in the main jigsaw page.
+        /// </summary>
         [Ignore]
-        public bool IsProcessing { get; set; }
+        public bool IsSelectedItemNotProcessed { get; set; }
+
+        /// <summary>
+        /// To tell if the jigsaw tiles postion has been chenged.
+        /// </summary>
         [Ignore]
-        public bool IsUpdated { get; set; }
+        public bool IsTilePositionChanged { get; set; }
+
+        /// <summary>
+        /// When there is no stored jigsaw from database and app create a new jigsaw during startup
+        /// then IsFreshNew value is set to true.
+        /// </summary>
         [Ignore]
         public bool IsFreshNew { get; set; }
 
@@ -60,10 +93,10 @@ namespace XJigsaw.Models
             IsSelected = false;
             IsLoaded = false;
             IsApplied = false;
-            IsJigsawInitiallized = true;
+            IsTilePositionInitial = true;
             IsDeleted = false;
-            IsProcessing = false;
-            IsUpdated = false;
+            IsSelectedItemNotProcessed = false;
+            IsTilePositionChanged = false;
             IsFreshNew = false;
         }
     }
