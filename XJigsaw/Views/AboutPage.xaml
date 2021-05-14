@@ -54,6 +54,9 @@
                        FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                 <Label x:Name="labelWarningDetails" Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_About_Warning}"
                        FontSize="12" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="30,15"/>
+                <Button x:Name="showPolicyButton" Text="隐私政策" Grid.Row="3" Grid.Column="1" FontSize="12"
+                                HeightRequest="40" WidthRequest="100" HorizontalOptions="Center" CharacterSpacing="0" Margin="0"
+                                TextColor="White" Clicked="showPolicyButton_Clicked"/>
 
                 <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand" Margin="0" Padding="20">
                     <Frame.BackgroundColor>

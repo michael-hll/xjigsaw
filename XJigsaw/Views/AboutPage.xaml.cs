@@ -18,7 +18,7 @@ namespace XJigsaw.Views
         {
             InitializeComponent();
             AboutPageInstance = this;
-
+            showPolicyButton.IsVisible = !Utility.IsiOS() && Utility.CHECK_POLICY_READ;
         }
 
         protected override void OnAppearing()
@@ -41,6 +41,11 @@ namespace XJigsaw.Views
             else
                 ((AboutViewModel)this.BindingContext).UserLevel = BestScoreViewModel.GetLevelById(AboutViewModel.User.Level).NameOther;
 
+        }
+
+        void showPolicyButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            JigsawPage.Instance.ShowPrivacyPolicy(false);
         }
     }
 }

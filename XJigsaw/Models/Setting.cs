@@ -14,6 +14,7 @@ namespace XJigsaw.Models
         public double Opacity { get; set; }
         public int CurrentJigsawId { get; set; }
         public bool IsPlaySound { get; set; }
+        public bool IsReadPrivacy { get; set; }
 
         public Setting()
         {
@@ -25,6 +26,7 @@ namespace XJigsaw.Models
             Opacity = 0.5;
             CurrentJigsawId = -1;
             IsPlaySound = false;
+            IsReadPrivacy = false;
         }
 
         public string GetCorrectImageRatio(string cultureName)

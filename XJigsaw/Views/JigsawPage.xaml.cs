@@ -15,6 +15,7 @@ using Stormlion.ImageCropper;
 using Xamarin.Forms;
 using XJigsaw.Resources;
 using Xamarin.Essentials;
+using Rg.Plugins.Popup.Extensions;
 
 namespace XJigsaw.Views
 {
@@ -26,6 +27,7 @@ namespace XJigsaw.Views
         // Number of tiles horizontally and vertically,
         static int NUM = 3;
         public static Jigsaw CurrentJigsaw;
+        public static JigsawPage Instance = null;
 
         public static View JigsawParent { get; set; }
         public static Frame ToolBarFrame { get; set; }
@@ -172,6 +174,7 @@ namespace XJigsaw.Views
             StackLayoutParent = (View)this.stackLayout.Parent;
             tapPlayer.Load("tap.wav");
             successPlayer.Load("success.mp3");
+            Instance = this;
 
             adHandler = new AdMobService(this);
         }
@@ -626,6 +629,8 @@ namespace XJigsaw.Views
             IsProcessing = false;
 
             ShowHideControls(CurrentJigsaw.IsFreshNew);
+
+            this.ShowPrivacyPolicy(App.ShellInstance.JigsawSettings.IsReadPrivacy);
         }
 
         async void OnTileTapped(object sender, EventArgs args)
@@ -956,6 +961,16 @@ namespace XJigsaw.Views
             }
 
             ShowHideControls(CurrentJigsaw.IsFreshNew);
+
+        }
+
+        public async void ShowPrivacyPolicy(bool isReadPrivacy)
+        {
+            if (!Utility.IsiOS() && Utility.CHECK_POLICY_READ && !isReadPrivacy)
+            {
+                PolicyPage policy = new PolicyPage();
+                await this.Navigation.PushPopupAsync(policy);
+            }
         }
     }
 }

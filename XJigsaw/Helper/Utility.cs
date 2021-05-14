@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using System.IO;
 using XJigsaw.Views;
 using XJigsaw.ViewModels;
+using Rg.Plugins.Popup.Extensions;
 
 namespace XJigsaw.Helper
 {
     public class Utility
     {
+        /* Release configurations */
+        public const bool CHECK_POLICY_READ = true;
+
         public const string DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss.fff zzz";
         public const string DATETIME_FORMAT_SHOW = "yyyy-MM-dd hh:mm:ss";
         public const string DATABASE_NAME = "puzzle.db3";
@@ -68,5 +72,6 @@ namespace XJigsaw.Helper
         {
             return Device.RuntimePlatform == Device.iOS;
         }
+
     }
 }

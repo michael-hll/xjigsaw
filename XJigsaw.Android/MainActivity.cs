@@ -26,6 +26,7 @@ namespace XJigsaw.Droid
 
             MobileAds.Initialize(ApplicationContext);
             Stormlion.ImageCropper.Droid.Platform.Init();
+            Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 

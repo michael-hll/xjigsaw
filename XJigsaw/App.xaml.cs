@@ -128,6 +128,9 @@ namespace XJigsaw
                 await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);
             }
 
+            // Testing data
+            // App.ShellInstance.JigsawSettings.IsReadPrivacy = false;
+
             // Load Users
             //await App.Database.DeleteAllUsers();
             List<User> users = await App.Database.GetAllUsersAsync();

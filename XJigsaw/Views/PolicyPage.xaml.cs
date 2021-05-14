@@ -6,11 +6,15 @@ using Xamarin.Forms;
 
 namespace XJigsaw.Views
 {
-    public partial class PopupPage : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class PolicyPage : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public PopupPage()
+        public PolicyPage()
         {
             InitializeComponent();
+            this.ParentContainer.HeightRequest = Application.Current.MainPage.Height -
+                this.ParentContainer.Padding.Top - this.ParentContainer.Padding.Bottom;
+            if (App.ShellInstance.JigsawSettings.IsReadPrivacy)
+                this.CloseButton.BackgroundColor = Color.DarkGray;
         }
 
         protected override void OnAppearing()
@@ -21,6 +25,11 @@ namespace XJigsaw.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
         }
 
         // ### Methods for supporting animations in your popup page ###
@@ -88,22 +97,13 @@ namespace XJigsaw.Views
 
         async void CloseButton_Clicked(System.Object sender, System.EventArgs e)
         {
+            if (!App.ShellInstance.JigsawSettings.IsReadPrivacy)
+            {
+                App.ShellInstance.JigsawSettings.IsReadPrivacy = true;
+                await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);
+            }
             await Navigation.PopPopupAsync();
         }
 
-        /* Sample code to open/close the popup */
-        /*
-         * PopupPage page = new PopupPage();
-            // Open a PopupPage
-            await Navigation.PushPopupAsync(page);
-
-            // Close the last PopupPage int the PopupStack
-            //await Navigation.PopPopupAsync();
-
-            // Close all PopupPages in the PopupStack
-            //await Navigation.PopAllPopupAsync();
-
-            // Close an one PopupPage in the PopupStack even if the page is not the last
-            //await Navigation.RemovePopupPageAsync(page);*/
     }
 }

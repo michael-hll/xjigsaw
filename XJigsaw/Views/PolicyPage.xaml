@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="XJigsaw.Views.PolicyPage"
+    CloseWhenBackgroundIsClicked="False"
+    HasSystemPadding="True"
+    >
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+    <StackLayout 
+        VerticalOptions="FillAndExpand" 
+        HorizontalOptions="FillAndExpand" 
+        Padding="10,10,10,10">
+        <Frame x:Name="ParentContainer" BackgroundColor="White" Margin="0" Padding="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ScrollView Grid.Row="0">
+                    <StackLayout>
+                        <Label HorizontalOptions="Center" Margin="20,20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="隐私政策" FontSize="20" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HorizontalOptions="Center" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="    《随意拼图》APP" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" 以下提到的本软件都是指该软件。本软件尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本软件会按照本隐私权政策的规定使用和披露您的个人信息。但本软件将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本软件不会将这些信息对外披露或向第三方提供。本软件会不时更新本隐私权政策。您在同意本软件服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本软件服务使用协议不可分割的一部分。"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Center" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="    1. 适用范围" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" 在您使用本软件网络服务时，本软件不会收集你手机上的任何私人信息。"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Center" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="    2.信息的使用" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" 在获得您的数据之后，本软件会将其存储你手机本身的内存卡上，并不会上传到服务器。"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Start" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="    3.信息披露" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HorizontalOptions="Start" Margin="40,0,5,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="a) 本软件不会将您的信息披露给不受信任的第三方。" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HorizontalOptions="Start" Margin="40,0,5,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="b) 根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label HorizontalOptions="Start" Margin="40,0,5,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="c) 如您出现违反中国有关法律、法规或者相关规则的情况，需要向第三方披露；" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+
+                        <Label HorizontalOptions="Center" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="    4.信息存储和交换" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" 本软件用到的所有信息都会存储在你的手机内部存储，不会上传回服务器。"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Center" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="    5.信息安全" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" 在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Start" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="作者:" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" 日月微光"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Start" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Email: " FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" riyueweiguang@outlook.com"
+                                          FontSize="13" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label HorizontalOptions="Start" Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="链接: " FontSize="9" TextColor="Black" FontAttributes="Bold"/>
+                                    <Span Text=" https://www.jianshu.com/p/2e042a42d8b9"
+                                          FontSize="9" TextColor="Black"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+                </ScrollView>
+
+                <Button x:Name="CloseButton" Text="已阅读并同意" TextColor="White"
+                        Clicked="CloseButton_Clicked"
+                        Grid.Row="1"                                                
+                        HorizontalOptions="Center"/>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>
