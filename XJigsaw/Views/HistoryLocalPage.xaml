@@ -47,7 +47,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Margin="0" VerticalOptions="FillAndExpand" Spacing="5" Padding="0"
+    <StackLayout Margin="0" VerticalOptions="FillAndExpand" Spacing="0" Padding="0"
                  BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
         <Frame x:Name="toolBarFrame"
                    VerticalOptions="Start"
@@ -97,7 +97,7 @@
             </Grid>
         </Frame>
 
-        <ProgressBar x:Name="progressBar" Progress="0.00" ProgressColor="{StaticResource Primary}" HeightRequest="5" IsVisible="False"/>
+        <ProgressBar x:Name="progressBar" Progress="0.00" ProgressColor="{StaticResource Primary}" HeightRequest="5" IsVisible="False" Margin="0"/>
 
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}"
@@ -105,12 +105,12 @@
                      Margin="0">
             <CollectionView
                 x:Name="collectionView"
-                Margin="5,0"
+                Margin="5,2,5,2"
                 SelectionMode="Multiple"
                 SelectionChanged="collectionView_SelectionChanged"
                 ItemsSource="{Binding JigsawListItems}">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -118,7 +118,7 @@
                             CornerRadius="0"
                             HasShadow="False"
                             Padding="2"
-                            Margin="2"
+                            Margin="1"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
                             BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">

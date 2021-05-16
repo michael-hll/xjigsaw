@@ -8,6 +8,7 @@ using XJigsaw.Helper;
 using Plugin.ImageEdit.Abstractions;
 using Plugin.ImageEdit;
 using Plugin.Toast;
+using System.Threading.Tasks;
 
 namespace XJigsaw.Views
 {
@@ -49,10 +50,11 @@ namespace XJigsaw.Views
         async void refreshImageButton_Clicked(System.Object sender, System.EventArgs e)
         {
             enableImageButtons(false);
-            await ((HistoryLocalViewModel)BindingContext).GetJigsawsListAysnc();
+            refreshView.IsEnabled = false;
+            await ((HistoryLocalViewModel)BindingContext).RefreshDataAsync();
             updateImageButtonVisible();
-            updateSelectionCount();
             enableImageButtons(true);
+            refreshView.IsEnabled = true;
         }
 
         async void deleteImageButton_Clicked(System.Object sender, System.EventArgs e)
@@ -100,9 +102,13 @@ namespace XJigsaw.Views
             this.collectionView.SelectedItems.Clear();
         }
 
-        public void scrollToLatest()
+        public async void scrollToLatest()
         {
-            this.collectionView.ScrollTo(0);
+            if (((HistoryLocalViewModel)BindingContext).JigsawListItems.Count > 0)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(0.1));
+                this.collectionView.ScrollTo(0);
+            }
         }
 
         public void enableImageButtons(bool isEnable)

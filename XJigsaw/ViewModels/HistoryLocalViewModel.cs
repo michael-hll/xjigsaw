@@ -100,6 +100,7 @@ namespace XJigsaw.ViewModels
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
+                await Task.Delay(TimeSpan.FromSeconds(0.1));
                 HistoryLocalPage.HistoryLocalPageInstance.enableImageButtons(false);
                 List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync();
                 ProgressBar progressBar = HistoryLocalPage.HistoryLocalPageInstance.ProgressBar;
