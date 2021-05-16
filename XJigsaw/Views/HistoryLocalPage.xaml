@@ -43,7 +43,7 @@
             <x:Double x:Key="BottomLabelFontSize">9</x:Double>
             <Thickness x:Key="BottomLabelMargin">5,0</Thickness>
             <TextAlignment x:Key="BottomLabelTextAlignment">Center</TextAlignment>
-            <Thickness x:Key="TopLabelMargin">2,0</Thickness>
+            <Thickness x:Key="TopLabelMargin">3,0</Thickness>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -73,14 +73,32 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <ImageButton x:Name="chooseImageButton" Source="choose_image.png"                                 
+                <ImageButton x:Name="refreshImageButton" Source="reset.png"                                 
                                  Grid.Column="1"
                                  HeightRequest="30"
                                  WidthRequest="30"
                                  BackgroundColor="Transparent"
+                                 Clicked="refreshImageButton_Clicked"
+                                 Margin="{StaticResource TopLabelMargin}"/>
+                <ImageButton x:Name="chooseImageButton" Source="checked.png"                                 
+                                 Grid.Column="2"
+                                 HeightRequest="22"
+                                 WidthRequest="22"
+                                 BackgroundColor="Transparent"
+                                 Clicked="chooseImageButton_Clicked"
+                                 Margin="{StaticResource TopLabelMargin}"/>
+                <ImageButton x:Name="deleteImageButton" Source="delete.png"                                 
+                                 Grid.Column="3"
+                                 HeightRequest="22"
+                                 WidthRequest="22"
+                                 BackgroundColor="Transparent"
+                                 Clicked="deleteImageButton_Clicked"
                                  Margin="{StaticResource TopLabelMargin}"/>
             </Grid>
         </Frame>
+
+        <ProgressBar x:Name="progressBar" Progress="0.00" ProgressColor="{StaticResource Primary}" HeightRequest="5" IsVisible="False"/>
+
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}"
                      x:Name="refreshView"
@@ -88,7 +106,8 @@
             <CollectionView
                 x:Name="collectionView"
                 Margin="5,0"
-                SelectionMode="Single"                
+                SelectionMode="Multiple"
+                SelectionChanged="collectionView_SelectionChanged"
                 ItemsSource="{Binding JigsawListItems}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
@@ -212,6 +231,22 @@
                     MinimumHeightRequest="20"
                     HorizontalOptions="Start"
                     Grid.Column="1"
+                    Margin="0,0,0,0"
+                    Padding="0"/>
+
+                <Label
+                    x:Name="labelSelectedCount"
+                    Text=""
+                    FontSize="{StaticResource BottomLabelFontSize}"
+                    FontFamily="{StaticResource BottomLabelFontFamily}"
+                    HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="20"
+                    MinimumHeightRequest="20"
+                    HorizontalOptions="Start"
+                    Grid.Column="2"
                     Margin="0,0,0,0"
                     Padding="0"/>
 

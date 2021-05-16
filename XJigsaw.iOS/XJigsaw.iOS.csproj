@@ -116,8 +116,9 @@
     <BundleResource Include="Resources\save.png" />
     <BundleResource Include="Resources\startup_bg.png" />
     <BundleResource Include="Resources\startup_bg.png" />
-    <BundleResource Include="Resources\delete.png" />
     <BundleResource Include="Resources\tap.png" />
+    <BundleResource Include="Resources\delete.png" />
+    <BundleResource Include="Resources\checked.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

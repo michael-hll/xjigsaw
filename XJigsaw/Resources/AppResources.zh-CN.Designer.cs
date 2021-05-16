@@ -454,5 +454,17 @@ namespace XJigsaw.Resources {
                 return ResourceManager.GetString("XJigsaw_Jigsaw_About_Note", resourceCulture);
             }
         }
+        
+        internal static string XJigsaw_Jigsaw_History_Loacal_SelectedCount {
+            get {
+                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_SelectedCount", resourceCulture);
+            }
+        }
+        
+        internal static string XJigsaw_Jigsaw_History_Loacal_SelectedNote {
+            get {
+                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_SelectedNote", resourceCulture);
+            }
+        }
     }
 }

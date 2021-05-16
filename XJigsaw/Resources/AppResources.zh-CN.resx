@@ -34,7 +34,7 @@
         <value>否</value>
     </data>
 	<data name="XJigsaw_Jigsaw_ConfirmDeleteCurrent" xml:space="preserve">
-        <value>确定要删除当前拼图？</value>
+        <value>确定要删除选中拼图？</value>
     </data>
 	<data name="XJigsaw_Jigsaw_PictureSize" xml:space="preserve">
         <value>图片大小</value>
@@ -215,5 +215,11 @@
     </data>
 	<data name="XJigsaw_Jigsaw_About_Note" xml:space="preserve">
         <value>提示</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedCount" xml:space="preserve">
+        <value>选中数量:</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedNote" xml:space="preserve">
+        <value>拼图已重置</value>
     </data>
 </root>

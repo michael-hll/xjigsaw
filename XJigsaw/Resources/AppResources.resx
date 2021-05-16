@@ -34,7 +34,7 @@
         <value>No</value>
     </data>
 	<data name="XJigsaw_Jigsaw_ConfirmDeleteCurrent" xml:space="preserve">
-        <value>Delete current Jigsaw?</value>
+        <value>Delete selected jigsaw(s)?</value>
     </data>
 	<data name="XJigsaw_Jigsaw_PictureSize" xml:space="preserve">
         <value>Picture Size</value>
@@ -215,5 +215,11 @@
     </data>
 	<data name="XJigsaw_Jigsaw_About_Note" xml:space="preserve">
         <value>Notes</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedCount" xml:space="preserve">
+        <value>Selected:</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedNote" xml:space="preserve">
+        <value>Reset current jigsaw</value>
     </data>
 </root>

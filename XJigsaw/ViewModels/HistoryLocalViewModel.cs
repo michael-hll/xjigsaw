@@ -50,7 +50,7 @@ namespace XJigsaw.ViewModels
             }
         }
 
-        private async Task SelectJigsawListItemAsync(JigsawListItem item)
+        public async Task SelectJigsawListItemAsync(JigsawListItem item)
         {
             List<Jigsaw> jigsaws = await App.Database.GetJigsawByID(item.ID);
             JigsawPage.CurrentJigsaw = jigsaws[0];
@@ -68,27 +68,19 @@ namespace XJigsaw.ViewModels
             SourceImagePage.SourceImage.Source = ImageSource.FromFile(fileFullName);
         }
 
-        private async Task DeleteJigsawItemAsync(JigsawListItem item)
+        public async Task DeleteJigsawItemAsync(JigsawListItem item)
         {
-            var result = await HistoryLocalPage.HistoryLocalPageInstance.DisplayAlert(
-                Resources.AppResources.XJigsaw_Jigsaw_Warning,
-                Resources.AppResources.XJigsaw_Jigsaw_ConfirmDeleteCurrent,
-                Resources.AppResources.XJigsaw_Jigsaw_Yes,
-                Resources.AppResources.XJigsaw_Jigsaw_No);
-            if (result)
-            {
-                await App.Database.DeleteJigsawById(item.ID);
-                JigsawListItems.Remove(item);
-                ItemCount = $"{Resources.AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
+            await App.Database.DeleteJigsawById(item.ID);
+            JigsawListItems.Remove(item);
+            ItemCount = $"{Resources.AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
 
-                if (JigsawPage.CurrentJigsaw.ID == item.ID)
-                {
-                    JigsawPage.CurrentJigsaw.ID = 0;
-                    JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
-                    JigsawPage.CurrentJigsaw.IsDeleted = true;
-                    App.ShellInstance.JigsawSettings.CurrentJigsawId = 0;
-                    await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);
-                }
+            if (JigsawPage.CurrentJigsaw.ID == item.ID)
+            {
+                JigsawPage.CurrentJigsaw.ID = 0;
+                JigsawPage.CurrentJigsaw.IsTilePositionInitial = true;
+                JigsawPage.CurrentJigsaw.IsDeleted = true;
+                App.ShellInstance.JigsawSettings.CurrentJigsawId = 0;
+                await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);
             }
         }
 
@@ -104,22 +96,37 @@ namespace XJigsaw.ViewModels
             //throw new NotImplementedException();
         }
 
-        async Task GetJigsawsListAysnc()
+        public Task GetJigsawsListAysnc()
         {
-            List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync();
-            JigsawListItems.Clear();
-            foreach (var jigsaw in jigsaws)
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                JigsawListItem item = new JigsawListItem(jigsaw.ID, jigsaw.Name, jigsaw.BytesSmall);
-                // udpate
-                item.ImageSize = $"{Resources.AppResources.XJigsaw_Jigsaw_PictureSize}: {jigsaw.ImageHeight}x{jigsaw.ImageWidth}";
-                item.Level = $"{Resources.AppResources.XJigsaw_Jigsaw_PictureLevel}: {BestScoreViewModel.FormatLevelById(jigsaw.Level)}";
-                item.Steps = $"{Resources.AppResources.XJigsaw_Jigsaw_PictureSteps}: {jigsaw.Steps}";
-                item.ImageRatio = $"{Resources.AppResources.XJigsaw_Jigsaw_PictureRatio}: {jigsaw.ImageRatio}";
-                item.CreatedDateTime = $"{Resources.AppResources.XJigsaw_Jigsaw_PictureCreationDate}: {DateTime.Parse(jigsaw.CreatedDateTime).ToString(Utility.DATETIME_FORMAT_SHOW)}";
-                JigsawListItems.Insert(0, item);
-            }
-            ItemCount = $"{Resources.AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
+                HistoryLocalPage.HistoryLocalPageInstance.enableImageButtons(false);
+                List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync();
+                ProgressBar progressBar = HistoryLocalPage.HistoryLocalPageInstance.ProgressBar;
+                progressBar.IsVisible = jigsaws.Count > 0;
+                JigsawListItems.Clear();
+                int i = 0;
+                foreach (var jigsaw in jigsaws)
+                {
+                    i++;
+                    await progressBar.ProgressTo(i / (double)jigsaws.Count, 1, Easing.Linear);
+                    JigsawListItem item = new JigsawListItem(jigsaw.ID, jigsaw.Name, jigsaw.BytesSmall);
+                    // udpate
+                    item.ImageSize = $"{AppResources.XJigsaw_Jigsaw_PictureSize}: {jigsaw.ImageHeight}x{jigsaw.ImageWidth}";
+                    item.Level = $"{AppResources.XJigsaw_Jigsaw_PictureLevel}: {BestScoreViewModel.FormatLevelById(jigsaw.Level)}";
+                    item.Steps = $"{AppResources.XJigsaw_Jigsaw_PictureSteps}: {jigsaw.Steps}";
+                    item.ImageRatio = $"{AppResources.XJigsaw_Jigsaw_PictureRatio}: {jigsaw.ImageRatio}";
+                    item.CreatedDateTime = $"{AppResources.XJigsaw_Jigsaw_PictureCreationDate}: {DateTime.Parse(jigsaw.CreatedDateTime).ToString(Utility.DATETIME_FORMAT_SHOW)}";
+                    JigsawListItems.Insert(0, item);
+                }
+                progressBar.IsVisible = false;
+                ItemCount = $"{AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
+                HistoryLocalPage.HistoryLocalPageInstance.clearSelection();
+                HistoryLocalPage.HistoryLocalPageInstance.updateSelectionCount();
+                HistoryLocalPage.HistoryLocalPageInstance.scrollToLatest();
+                HistoryLocalPage.HistoryLocalPageInstance.enableImageButtons(true);
+            });
+            return Task.CompletedTask;
         }
 
         public bool IsRefreshing
