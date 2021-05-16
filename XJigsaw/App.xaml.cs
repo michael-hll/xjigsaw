@@ -55,6 +55,16 @@ namespace XJigsaw
 
             InitializeComponent();
 
+            /*
+            Application.Current.RequestedThemeChanged += (s, a) =>
+            {
+                if (Application.Current.RequestedTheme == OSAppTheme.Dark)
+                    Application.Current.UserAppTheme = OSAppTheme.Dark;
+                else
+                    Application.Current.UserAppTheme = OSAppTheme.Light;
+            };*/
+            Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+
             //File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "puzzle.db3"));
 
             MainPage = new AppShell();

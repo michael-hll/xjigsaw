@@ -17,13 +17,7 @@
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
             <Style TargetType="Label">
-                <Setter Property="TextColor">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Color">
-                            <On Platform="Android" Value="{StaticResource AndroidLabelTextColor}" />
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White, Default=Black}" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -41,12 +35,9 @@
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
-            <StackLayout x:Name="labelContainer" Orientation="Vertical" Padding="20,2,20,20" Spacing="0" Margin="0,0" VerticalOptions="FillAndExpand">
-                <StackLayout.BackgroundColor>
-                    <OnPlatform x:TypeArguments="Color">
-                        <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
-                    </OnPlatform>
-                </StackLayout.BackgroundColor>
+            <StackLayout x:Name="labelContainer" Orientation="Vertical" Padding="20,2,20,20" Spacing="0" Margin="0,0" VerticalOptions="FillAndExpand"
+                         BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
+
                 <Label x:Name="labelUserName" Text="{Binding UserName, StringFormat='{0}'}" Margin="0,25,0,5"/>
                 <Label x:Name="labelUserLevel" Text="{Binding UserLevel, StringFormat='{0}'}"/>
                 <Label x:Name="spaceHolder" Text="" HorizontalOptions="Center" HeightRequest="20" />
@@ -58,12 +49,9 @@
                                 HeightRequest="40" WidthRequest="100" HorizontalOptions="Center" CharacterSpacing="0" Margin="0"
                                 TextColor="White" Clicked="showPolicyButton_Clicked"/>
 
-                <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand" Margin="0" Padding="20">
-                    <Frame.BackgroundColor>
-                        <OnPlatform x:TypeArguments="Color">
-                            <On Platform="Android" Value="LightYellow" />
-                        </OnPlatform>
-                    </Frame.BackgroundColor>
+                <Frame x:Name="userContainer" HasShadow="False" BorderColor="LightGray" VerticalOptions="EndAndExpand" Margin="0" Padding="20"
+                       BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
+
                     <Grid ColumnSpacing="5" RowSpacing="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

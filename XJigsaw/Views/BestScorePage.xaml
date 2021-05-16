@@ -6,9 +6,12 @@
     xmlns:vm="clr-namespace:XJigsaw.ViewModels"
     xmlns:resource="clr-namespace:XJigsaw.Resources"
     Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}"
-    Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="True"
     Shell.NavBarHasShadow="True">
+
+    <Shell.NavBarIsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" />
+    </Shell.NavBarIsVisible>
 
     <ContentPage.BindingContext>
         <vm:BestScoreViewModel />
@@ -16,7 +19,8 @@
 
     <StackLayout>
         <ScrollView>
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10"
+                         BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
                 <ListView x:Name="listView" VerticalOptions="FillAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>

@@ -6,20 +6,37 @@
     x:Class="XJigsaw.Views.HistoryLocalPage"
     xmlns:resource="clr-namespace:XJigsaw.Resources"
     Title="{x:Static resource:AppResources.XJigsaw_Jigsaw_Title}"
-    Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="True"
     Shell.NavBarHasShadow="True">
+
+    <Shell.NavBarIsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" />
+    </Shell.NavBarIsVisible>
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="10"></Setter>
-                <Setter Property="TextColor">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Color">
-                            <On Platform="Android" Value="{StaticResource AndroidLabelTextColor}" />
-                        </OnPlatform>
-                    </Setter.Value>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White, Default=Black}" />
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="LightGoldenrodYellow" />
+                                    <Setter Property="BorderColor" Value="Orange" />
+                                    <Setter TargetName="labelImageSize" Property="Label.TextColor" Value="{StaticResource CollectionViewLabelSelectedTextColor}" />
+                                    <Setter TargetName="labelLevel" Property="Label.TextColor" Value="{StaticResource CollectionViewLabelSelectedTextColor}" />
+                                    <Setter TargetName="labelSteps" Property="Label.TextColor" Value="{StaticResource CollectionViewLabelSelectedTextColor}" />
+                                    <Setter TargetName="labelImageRatio" Property="Label.TextColor" Value="{StaticResource CollectionViewLabelSelectedTextColor}" />
+                                    <Setter TargetName="labelCreatedDateTime" Property="Label.TextColor" Value="{StaticResource CollectionViewLabelSelectedTextColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
                 </Setter>
             </Style>
             <x:String x:Key="BottomLabelFontFamily">Courier</x:String>
@@ -30,67 +47,81 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Margin="0">
-        <StackLayout.BackgroundColor>
-            <OnPlatform x:TypeArguments="Color">
-                <On Platform="Android" Value="{StaticResource AndroidLayoutBGColor}" />
-            </OnPlatform>
-        </StackLayout.BackgroundColor>
+    <StackLayout Margin="0" VerticalOptions="FillAndExpand" Spacing="5" Padding="0"
+                 BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
+        <Frame x:Name="toolBarFrame"
+                   VerticalOptions="Start"
+                   Padding="5,5"
+                   BackgroundColor="LightGoldenrodYellow"
+                   Margin="0"
+                   BorderColor="DarkGray"
+                   CornerRadius="0"
+                   HasShadow="False"
+                   HeightRequest="40">
+            <Grid Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ImageButton x:Name="chooseImageButton" Source="choose_image.png"                                 
+                                 Grid.Column="1"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 BackgroundColor="Transparent"
+                                 Margin="{StaticResource TopLabelMargin}"/>
+            </Grid>
+        </Frame>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}"
                      x:Name="refreshView"
-                     Margin="2"
-                     >
+                     Margin="0">
             <CollectionView
                 x:Name="collectionView"
-                ItemsSource="{Binding JigsawListItems}"
-                >
+                Margin="5,0"
+                SelectionMode="Single"                
+                ItemsSource="{Binding JigsawListItems}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItem Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_HistorySelect}"
-                                           IconImageSource="tap.png"
-                                           BackgroundColor="LightGreen"                                           
-                                           Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.SelectCommand}"
-                                           CommandParameter="{Binding}" />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem Text="{x:Static resource:AppResources.XJigsaw_Jigsaw_HistoryDelete}"
-                                           IconImageSource="delete.png"
-                                           BackgroundColor="Red"                                           
-                                           Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
-                                           CommandParameter="{Binding}" />
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Frame BorderColor="DarkGray"
-                                   CornerRadius="0"
-                                   HasShadow="False"
-                                   Padding="2"
-                                   Margin="2"
-                                   HorizontalOptions="FillAndExpand"
-                                   VerticalOptions="FillAndExpand">
-                                <Grid Padding="2">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="80" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="10" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image
+                        <Frame BorderColor="LightGray"
+                            CornerRadius="0"
+                            HasShadow="False"
+                            Padding="2"
+                            Margin="2"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
+
+                            <Grid Padding="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                </Grid.ColumnDefinitions>
+                                <Image
                                        Grid.Column="1"
                                        Grid.Row="0"
                                        Grid.RowSpan="7"
@@ -98,7 +129,9 @@
                                        Aspect="AspectFit"
                                        HeightRequest="60"
                                        WidthRequest="80" />
-                                    <Label
+
+                                <Label
+                                       x:Name="labelID"
                                        Grid.Row="0"
                                        Grid.Column="3"
                                        Grid.ColumnSpan="2"
@@ -108,32 +141,36 @@
                                        BackgroundColor="{StaticResource Primary}"
                                        FontAttributes="Bold"
                                        FontSize="12"
-                                       TextColor="White"
+                                       TextColor="White"                                       
                                        Text="{Binding Path=ID,                                              
                                               StringFormat='{0}'}" />
-                                    <Label
+                                <Label
+                                       x:Name="labelImageSize" 
                                        Grid.Row="1"
-                                       Grid.Column="3"
+                                       Grid.Column="3"                                       
                                        Text="{Binding ImageSize}" />
-                                    <Label
+                                <Label
+                                       x:Name="labelLevel"
                                        Grid.Row="2"
-                                       Grid.Column="3"
+                                       Grid.Column="3"                                 
                                        Text="{Binding Level}" />
-                                    <Label
+                                <Label
+                                       x:Name="labelSteps"
                                        Grid.Row="3"
                                        Grid.Column="3"
                                        Text="{Binding Steps}" />
-                                    <Label
+                                <Label
+                                       x:Name="labelImageRatio"
                                        Grid.Row="4"
                                        Grid.Column="3"
                                        Text="{Binding ImageRatio}" />
-                                    <Label
+                                <Label
+                                       x:Name="labelCreatedDateTime"
                                        Grid.Row="5"
                                        Grid.Column="3"
                                        Text="{Binding CreatedDateTime}" />
-                                </Grid>
-                            </Frame>
-                        </SwipeView>
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

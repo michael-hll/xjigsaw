@@ -14,7 +14,8 @@
     </Shell.NavBarIsVisible>
 
     <StackLayout>
-        <Frame VerticalOptions="FillAndExpand" Padding="0" CornerRadius="2">
+        <Frame VerticalOptions="FillAndExpand" Padding="0" CornerRadius="2"
+               BackgroundColor="{AppThemeBinding Dark=Black, Light=White, Default=White}">
             <pinch:PinchZoom>
                 <pinch:PinchZoom.Content>
                     <Image x:Name="sourceImage"
