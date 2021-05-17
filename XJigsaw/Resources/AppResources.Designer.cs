@@ -455,15 +455,21 @@ namespace XJigsaw.Resources {
             }
         }
         
-        internal static string XJigsaw_Jigsaw_History_Loacal_SelectedCount {
+        internal static string XJigsaw_Jigsaw_History_Local_SelectedCount {
             get {
-                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_SelectedCount", resourceCulture);
+                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Local_SelectedCount", resourceCulture);
             }
         }
         
-        internal static string XJigsaw_Jigsaw_History_Loacal_SelectedNote {
+        internal static string XJigsaw_Jigsaw_History_Local_SelectedNote {
             get {
-                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_SelectedNote", resourceCulture);
+                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Local_SelectedNote", resourceCulture);
+            }
+        }
+        
+        internal static string XJigsaw_Jigsaw_History_Loacal_DB_Size {
+            get {
+                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_DB_Size", resourceCulture);
             }
         }
     }

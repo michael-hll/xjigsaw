@@ -216,10 +216,13 @@
 	<data name="XJigsaw_Jigsaw_About_Note" xml:space="preserve">
         <value>Notes</value>
     </data>
-	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedCount" xml:space="preserve">
+	<data name="XJigsaw_Jigsaw_History_Local_SelectedCount" xml:space="preserve">
         <value>Selected:</value>
     </data>
-	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedNote" xml:space="preserve">
+	<data name="XJigsaw_Jigsaw_History_Local_SelectedNote" xml:space="preserve">
         <value>Reset current jigsaw</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_DB_Size" xml:space="preserve">
+        <value>DB Size:</value>
     </data>
 </root>

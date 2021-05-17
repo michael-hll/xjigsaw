@@ -73,6 +73,7 @@ namespace XJigsaw.ViewModels
             await App.Database.DeleteJigsawById(item.ID);
             JigsawListItems.Remove(item);
             ItemCount = $"{Resources.AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
+            HistoryLocalPage.HistoryLocalPageInstance.UpdateDBSize();
 
             if (JigsawPage.CurrentJigsaw.ID == item.ID)
             {
@@ -101,7 +102,7 @@ namespace XJigsaw.ViewModels
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(TimeSpan.FromSeconds(0.1));
-                HistoryLocalPage.HistoryLocalPageInstance.enableImageButtons(false);
+                HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(false);
                 List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync();
                 ProgressBar progressBar = HistoryLocalPage.HistoryLocalPageInstance.ProgressBar;
                 progressBar.IsVisible = jigsaws.Count > 0;
@@ -122,10 +123,11 @@ namespace XJigsaw.ViewModels
                 }
                 progressBar.IsVisible = false;
                 ItemCount = $"{AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
-                HistoryLocalPage.HistoryLocalPageInstance.clearSelection();
-                HistoryLocalPage.HistoryLocalPageInstance.updateSelectionCount();
-                HistoryLocalPage.HistoryLocalPageInstance.scrollToLatest();
-                HistoryLocalPage.HistoryLocalPageInstance.enableImageButtons(true);
+                HistoryLocalPage.HistoryLocalPageInstance.ClearSelection();
+                HistoryLocalPage.HistoryLocalPageInstance.UpdateSelectionCount();
+                HistoryLocalPage.HistoryLocalPageInstance.UpdateDBSize();
+                HistoryLocalPage.HistoryLocalPageInstance.ScrollToLatest();
+                HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(true);
             });
             return Task.CompletedTask;
         }

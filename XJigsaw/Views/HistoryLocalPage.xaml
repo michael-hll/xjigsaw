@@ -78,21 +78,21 @@
                                  HeightRequest="30"
                                  WidthRequest="30"
                                  BackgroundColor="Transparent"
-                                 Clicked="refreshImageButton_Clicked"
+                                 Clicked="RefreshImageButton_Clicked"
                                  Margin="{StaticResource TopLabelMargin}"/>
                 <ImageButton x:Name="chooseImageButton" Source="checked.png"                                 
                                  Grid.Column="2"
                                  HeightRequest="22"
                                  WidthRequest="22"
                                  BackgroundColor="Transparent"
-                                 Clicked="chooseImageButton_Clicked"
+                                 Clicked="ChooseImageButton_Clicked"
                                  Margin="{StaticResource TopLabelMargin}"/>
                 <ImageButton x:Name="deleteImageButton" Source="delete.png"                                 
                                  Grid.Column="3"
                                  HeightRequest="22"
                                  WidthRequest="22"
                                  BackgroundColor="Transparent"
-                                 Clicked="deleteImageButton_Clicked"
+                                 Clicked="DeleteImageButton_Clicked"
                                  Margin="{StaticResource TopLabelMargin}"/>
             </Grid>
         </Frame>
@@ -107,7 +107,7 @@
                 x:Name="collectionView"
                 Margin="5,2,5,2"
                 SelectionMode="Multiple"
-                SelectionChanged="collectionView_SelectionChanged"
+                SelectionChanged="CollectionView_SelectionChanged"
                 ItemsSource="{Binding JigsawListItems}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
@@ -235,6 +235,22 @@
                     Padding="0"/>
 
                 <Label
+                    x:Name="labelDBSize"
+                    Text=""
+                    FontSize="{StaticResource BottomLabelFontSize}"
+                    FontFamily="{StaticResource BottomLabelFontFamily}"
+                    HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    VerticalTextAlignment="{StaticResource BottomLabelTextAlignment}"
+                    TextColor="Black"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="20"
+                    MinimumHeightRequest="20"
+                    HorizontalOptions="Start"
+                    Grid.Column="4"
+                    Margin="0,0,0,0"
+                    Padding="0"/>
+
+                <Label
                     x:Name="labelSelectedCount"
                     Text=""
                     FontSize="{StaticResource BottomLabelFontSize}"
@@ -246,7 +262,7 @@
                     HeightRequest="20"
                     MinimumHeightRequest="20"
                     HorizontalOptions="Start"
-                    Grid.Column="2"
+                    Grid.Column="5"
                     Margin="0,0,0,0"
                     Padding="0"/>
 

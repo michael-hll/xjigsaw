@@ -22,6 +22,7 @@ namespace XJigsaw.Helper
         public static readonly string LOCAL_APPLICATION_DATA_FOLDER = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         public static readonly string DATABASE_FOLDER = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "db");
         public static readonly string IMAGE_TEMP_FOLDER = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "image_tmp");
+        public static readonly string DATABASE_FULL_NAME = Path.Combine(DATABASE_FOLDER, DATABASE_NAME);
 
         public static Size GetImageSize(string fileName)
         {
@@ -71,6 +72,25 @@ namespace XJigsaw.Helper
         public static bool IsiOS()
         {
             return Device.RuntimePlatform == Device.iOS;
+        }
+
+        public static string GetFileSize(string fileFullName)
+        {
+            if (!File.Exists(fileFullName))
+                return "0.00 B";
+
+            string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+            double len = new FileInfo(fileFullName).Length;
+            int order = 0;
+            while (len >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                len = len / 1024;
+            }
+
+            // Adjust the format string to your preferences. For example "{0:0.#}{1}" would
+            // show a single decimal place, and no space.
+            return String.Format("{0:0.##}{1}", len, sizes[order]);
         }
 
     }

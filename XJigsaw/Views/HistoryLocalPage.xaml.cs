@@ -27,13 +27,13 @@ namespace XJigsaw.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            updateImageButtonVisible();
-            updateSelectionCount();
+            UpdateImageButtonVisible();
+            UpdateSelectionCount();
         }
 
         public static HistoryLocalPage HistoryLocalPageInstance = null;
 
-        void chooseImageButton_Clicked(System.Object sender, System.EventArgs e)
+        void ChooseImageButton_Clicked(System.Object sender, System.EventArgs e)
         {
             if (collectionView.SelectedItems.Count == 1)
             {
@@ -41,25 +41,25 @@ namespace XJigsaw.Views
 
                 _ = ((HistoryLocalViewModel)BindingContext).SelectJigsawListItemAsync(item);
 
-                CrossToastPopUp.Current.ShowToastMessage(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Loacal_SelectedNote);
+                CrossToastPopUp.Current.ShowToastMessage(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Local_SelectedNote);
                 this.collectionView.SelectedItems.Clear();
-                this.updateSelectionCount();
+                this.UpdateSelectionCount();
             }
         }
 
-        async void refreshImageButton_Clicked(System.Object sender, System.EventArgs e)
+        async void RefreshImageButton_Clicked(System.Object sender, System.EventArgs e)
         {
-            enableImageButtons(false);
+            EnableImageButtons(false);
             refreshView.IsEnabled = false;
             await ((HistoryLocalViewModel)BindingContext).RefreshDataAsync();
-            updateImageButtonVisible();
-            enableImageButtons(true);
+            UpdateImageButtonVisible();
+            EnableImageButtons(true);
             refreshView.IsEnabled = true;
         }
 
-        async void deleteImageButton_Clicked(System.Object sender, System.EventArgs e)
+        async void DeleteImageButton_Clicked(System.Object sender, System.EventArgs e)
         {
-            enableImageButtons(false);
+            EnableImageButtons(false);
             var result = await this.DisplayAlert(
                 XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_Warning,
                 XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_ConfirmDeleteCurrent,
@@ -74,35 +74,41 @@ namespace XJigsaw.Views
                 }
             }
             this.collectionView.SelectedItems.Clear();
-            updateImageButtonVisible();
-            updateSelectionCount();
-            enableImageButtons(true);
+            UpdateImageButtonVisible();
+            UpdateSelectionCount();
+            EnableImageButtons(true);
         }
 
-        void collectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
         {
-            updateImageButtonVisible();
-            updateSelectionCount();
+            UpdateImageButtonVisible();
+            UpdateSelectionCount();
         }
 
-        void updateImageButtonVisible()
+        void UpdateImageButtonVisible()
         {
             this.chooseImageButton.IsVisible = this.collectionView.SelectedItems.Count == 1;
             this.deleteImageButton.IsVisible = this.collectionView.SelectedItems.Count > 0;
         }
 
-        public void updateSelectionCount()
+        public void UpdateSelectionCount()
         {
             this.labelSelectedCount.Text =
-                $"{XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Loacal_SelectedCount} {this.collectionView.SelectedItems.Count}";
+                $"{XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Local_SelectedCount} {this.collectionView.SelectedItems.Count} ";
         }
 
-        public void clearSelection()
+        public void UpdateDBSize()
+        {
+            this.labelDBSize.Text =
+                $"{XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Loacal_DB_Size} {Utility.GetFileSize(Utility.DATABASE_FULL_NAME)} ";
+        }
+
+        public void ClearSelection()
         {
             this.collectionView.SelectedItems.Clear();
         }
 
-        public async void scrollToLatest()
+        public async void ScrollToLatest()
         {
             if (((HistoryLocalViewModel)BindingContext).JigsawListItems.Count > 0)
             {
@@ -111,7 +117,7 @@ namespace XJigsaw.Views
             }
         }
 
-        public void enableImageButtons(bool isEnable)
+        public void EnableImageButtons(bool isEnable)
         {
             this.refreshImageButton.IsEnabled = isEnable;
             this.chooseImageButton.IsEnabled = isEnable;

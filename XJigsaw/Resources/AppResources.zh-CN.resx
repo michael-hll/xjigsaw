@@ -216,10 +216,13 @@
 	<data name="XJigsaw_Jigsaw_About_Note" xml:space="preserve">
         <value>提示</value>
     </data>
-	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedCount" xml:space="preserve">
+	<data name="XJigsaw_Jigsaw_History_Local_SelectedCount" xml:space="preserve">
         <value>选中数量:</value>
     </data>
-	<data name="XJigsaw_Jigsaw_History_Loacal_SelectedNote" xml:space="preserve">
+	<data name="XJigsaw_Jigsaw_History_Local_SelectedNote" xml:space="preserve">
         <value>拼图已重置</value>
+    </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_DB_Size" xml:space="preserve">
+        <value>数据库大小:</value>
     </data>
 </root>
