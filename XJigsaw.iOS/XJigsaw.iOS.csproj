@@ -119,6 +119,7 @@
     <BundleResource Include="Resources\tap.png" />
     <BundleResource Include="Resources\delete.png" />
     <BundleResource Include="Resources\checked.png" />
+    <BundleResource Include="Resources\clock.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -117,11 +117,25 @@
                            CornerRadius="0" BackgroundColor="{StaticResource Primary}"
                            HasShadow="False" BorderColor="LightSkyBlue"
                            HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="30">
-                        <Label x:Name="labelTimer" Text="00:00:00" FontSize="20" Margin="10,1" BackgroundColor="{StaticResource Primary}"
-                               FontFamily="Courier" TextColor="LightCyan" FontAttributes="None"
-                               HorizontalOptions="Center" VerticalOptions="Center"
-                               HorizontalTextAlignment="Center" IsVisible="True"
-                               VerticalTextAlignment="Center"/>
+                        <Grid Padding="0" ColumnSpacing="0" Margin="0"
+                              HorizontalOptions="Center" VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="clock.png" Grid.Column="0" WidthRequest="20" HeightRequest="20"
+                                   Margin="8,2,0,2"
+                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Label x:Name="labelTimer" Text="00:00:00" FontSize="20" Margin="5,2" BackgroundColor="{StaticResource Primary}"
+                                   FontFamily="Courier" TextColor="LightCyan" FontAttributes="None"
+                                   Grid.Column="1"
+                                   HorizontalOptions="Center" VerticalOptions="Center"
+                                   HorizontalTextAlignment="Center" IsVisible="True"
+                                   VerticalTextAlignment="End"/>
+                        </Grid>
                     </Frame>
                 </Grid>
             </Frame>

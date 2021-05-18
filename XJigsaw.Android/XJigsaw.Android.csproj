@@ -228,6 +228,10 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\clock.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XJigsaw\XJigsaw.csproj">
