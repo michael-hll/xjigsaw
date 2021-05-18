@@ -51,11 +51,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: LiangLiang Han (LF97VTF674)</CodesignKey>
+    <CodesignKey>Apple Distribution: LiangLiang Han (DA898HHNA4)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
-    <CodesignProvision>Han LiangLiang Profile</CodesignProvision>
+    <CodesignProvision>X Jigsaw AppStore Profile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -180,26 +180,26 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon60-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon20.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon29.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon152.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58-2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-3.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120-2.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120-3.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon76-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon167-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon1024-3.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon20-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon29-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon152-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180-1.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
