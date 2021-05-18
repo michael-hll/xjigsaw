@@ -43,7 +43,7 @@
             <x:Double x:Key="BottomLabelFontSize">9</x:Double>
             <Thickness x:Key="BottomLabelMargin">5,0</Thickness>
             <TextAlignment x:Key="BottomLabelTextAlignment">Center</TextAlignment>
-            <Thickness x:Key="TopLabelMargin">3,0</Thickness>
+            <Thickness x:Key="TopLabelMargin">5,0</Thickness>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -105,7 +105,7 @@
                      Margin="0">
             <CollectionView
                 x:Name="collectionView"
-                Margin="5,2,5,2"
+                Margin="5,3,5,3"
                 SelectionMode="Multiple"
                 SelectionChanged="CollectionView_SelectionChanged"
                 ItemsSource="{Binding JigsawListItems}">
@@ -237,6 +237,7 @@
                 <Label
                     x:Name="labelDBSize"
                     Text=""
+                    IsVisible="False"
                     FontSize="{StaticResource BottomLabelFontSize}"
                     FontFamily="{StaticResource BottomLabelFontFamily}"
                     HorizontalTextAlignment="{StaticResource BottomLabelTextAlignment}"

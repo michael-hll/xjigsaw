@@ -53,6 +53,11 @@ namespace XJigsaw.Models
             return databaseConn.Table<Jigsaw>().ToListAsync();
         }
 
+        public Task<List<Jigsaw>> GetJigsawsAsync(int greaterThanID)
+        {
+            return databaseConn.Table<Jigsaw>().Where(item => item.ID > greaterThanID).ToListAsync();
+        }
+
         public Task<List<Jigsaw>> GetJigsawByID(int id)
         {
             return databaseConn.Table<Jigsaw>().Where(t => t.ID == id).ToListAsync();

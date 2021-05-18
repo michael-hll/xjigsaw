@@ -25,7 +25,7 @@
             <x:Double x:Key="BottomLabelFontSize">9</x:Double>
             <Thickness x:Key="BottomLabelMargin">5,0</Thickness>
             <TextAlignment x:Key="BottomLabelTextAlignment">Center</TextAlignment>
-            <Thickness x:Key="TopLabelMargin">3,0</Thickness>
+            <Thickness x:Key="TopLabelMargin">5,0</Thickness>
         </ResourceDictionary>
     </ContentPage.Resources>
 

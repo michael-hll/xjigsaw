@@ -22,6 +22,8 @@ namespace XJigsaw.ViewModels
         bool isRefreshing;
 
         public ObservableCollection<JigsawListItem> JigsawListItems { get; private set; } = new ObservableCollection<JigsawListItem>();
+        public HashSet<int> JigsawIDs = new HashSet<int>();
+        public int MaxID { get; set; } = 0;
 
         public ICommand LoadMoreDataCommand => new Command(GetNextPageOfData);
         public ICommand RefreshCommand => new Command(async () => await RefreshDataAsync());
@@ -103,15 +105,15 @@ namespace XJigsaw.ViewModels
             {
                 await Task.Delay(TimeSpan.FromSeconds(0.1));
                 HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(false);
-                List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync();
+                List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync(MaxID);
                 ProgressBar progressBar = HistoryLocalPage.HistoryLocalPageInstance.ProgressBar;
                 progressBar.IsVisible = jigsaws.Count > 0;
-                JigsawListItems.Clear();
                 int i = 0;
                 foreach (var jigsaw in jigsaws)
                 {
                     i++;
                     await progressBar.ProgressTo(i / (double)jigsaws.Count, 1, Easing.Linear);
+                    if (JigsawIDs.Contains(jigsaw.ID)) continue;
                     JigsawListItem item = new JigsawListItem(jigsaw.ID, jigsaw.Name, jigsaw.BytesSmall);
                     // udpate
                     item.ImageSize = $"{AppResources.XJigsaw_Jigsaw_PictureSize}: {jigsaw.ImageHeight}x{jigsaw.ImageWidth}";
@@ -120,6 +122,9 @@ namespace XJigsaw.ViewModels
                     item.ImageRatio = $"{AppResources.XJigsaw_Jigsaw_PictureRatio}: {jigsaw.ImageRatio}";
                     item.CreatedDateTime = $"{AppResources.XJigsaw_Jigsaw_PictureCreationDate}: {DateTime.Parse(jigsaw.CreatedDateTime).ToString(Utility.DATETIME_FORMAT_SHOW)}";
                     JigsawListItems.Insert(0, item);
+                    JigsawIDs.Add(jigsaw.ID);
+                    if (jigsaw.ID > MaxID)
+                        MaxID = jigsaw.ID;
                 }
                 progressBar.IsVisible = false;
                 ItemCount = $"{AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
