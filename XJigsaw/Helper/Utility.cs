@@ -12,7 +12,7 @@ namespace XJigsaw.Helper
     public class Utility
     {
         /* Release configurations */
-        public const bool CHECK_POLICY_READ = true;
+        public const bool CHECK_POLICY_READ = false;
 
         public const string DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss.fff zzz";
         public const string DATETIME_FORMAT_SHOW = "yyyy-MM-dd hh:mm:ss";
