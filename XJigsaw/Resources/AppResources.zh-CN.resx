@@ -225,4 +225,7 @@
 	<data name="XJigsaw_Jigsaw_History_Loacal_DB_Size" xml:space="preserve">
         <value>数据库大小:</value>
     </data>
+	<data name="XJigsaw_Jigsaw_History_Loacal_NoUpdates" xml:space="preserve">
+        <value>没有更新</value>
+    </data>
 </root>

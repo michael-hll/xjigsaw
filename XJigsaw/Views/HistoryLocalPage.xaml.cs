@@ -9,6 +9,7 @@ using Plugin.ImageEdit.Abstractions;
 using Plugin.ImageEdit;
 using Plugin.Toast;
 using System.Threading.Tasks;
+using XJigsaw.Resources;
 
 namespace XJigsaw.Views
 {
@@ -23,12 +24,28 @@ namespace XJigsaw.Views
         }
 
         public ProgressBar ProgressBar;
+        public static int UpdatedJigsawID = 0;
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             UpdateImageButtonVisible();
             UpdateSelectionCount();
+            UpdateJigsawListItem();
+
+        }
+
+        private async void UpdateJigsawListItem()
+        {
+            if (UpdatedJigsawID > 0)
+            {
+                List<Jigsaw> jigsaws = await App.Database.GetJigsawByID(UpdatedJigsawID);
+                if (jigsaws.Count > 0)
+                {
+                    ((HistoryLocalViewModel)BindingContext).UpdateJigsawItem(jigsaws[0]);
+                }
+                UpdatedJigsawID = 0;
+            }
         }
 
         public static HistoryLocalPage HistoryLocalPageInstance = null;
@@ -45,6 +62,11 @@ namespace XJigsaw.Views
                 this.collectionView.SelectedItems.Clear();
                 this.UpdateSelectionCount();
             }
+        }
+
+        public void NoteNoUpdates()
+        {
+            CrossToastPopUp.Current.ShowToastMessage(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Loacal_NoUpdates);
         }
 
         async void RefreshImageButton_Clicked(System.Object sender, System.EventArgs e)

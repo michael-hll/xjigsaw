@@ -472,5 +472,11 @@ namespace XJigsaw.Resources {
                 return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_DB_Size", resourceCulture);
             }
         }
+        
+        internal static string XJigsaw_Jigsaw_History_Loacal_NoUpdates {
+            get {
+                return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_NoUpdates", resourceCulture);
+            }
+        }
     }
 }

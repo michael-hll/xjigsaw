@@ -22,7 +22,7 @@ namespace XJigsaw.ViewModels
         bool isRefreshing;
 
         public ObservableCollection<JigsawListItem> JigsawListItems { get; private set; } = new ObservableCollection<JigsawListItem>();
-        public HashSet<int> JigsawIDs = new HashSet<int>();
+        public static HashSet<int> JigsawIDs = new HashSet<int>();
         public int MaxID { get; set; } = 0;
 
         public ICommand LoadMoreDataCommand => new Command(GetNextPageOfData);
@@ -114,17 +114,10 @@ namespace XJigsaw.ViewModels
                     i++;
                     await progressBar.ProgressTo(i / (double)jigsaws.Count, 1, Easing.Linear);
                     if (JigsawIDs.Contains(jigsaw.ID)) continue;
-                    JigsawListItem item = new JigsawListItem(jigsaw.ID, jigsaw.Name, jigsaw.BytesSmall);
-                    // udpate
-                    item.ImageSize = $"{AppResources.XJigsaw_Jigsaw_PictureSize}: {jigsaw.ImageHeight}x{jigsaw.ImageWidth}";
-                    item.Level = $"{AppResources.XJigsaw_Jigsaw_PictureLevel}: {BestScoreViewModel.FormatLevelById(jigsaw.Level)}";
-                    item.Steps = $"{AppResources.XJigsaw_Jigsaw_PictureSteps}: {jigsaw.Steps}";
-                    item.ImageRatio = $"{AppResources.XJigsaw_Jigsaw_PictureRatio}: {jigsaw.ImageRatio}";
-                    item.CreatedDateTime = $"{AppResources.XJigsaw_Jigsaw_PictureCreationDate}: {DateTime.Parse(jigsaw.CreatedDateTime).ToString(Utility.DATETIME_FORMAT_SHOW)}";
+                    JigsawListItem item = JigsawToJigsawListItem(jigsaw);
                     JigsawListItems.Insert(0, item);
                     JigsawIDs.Add(jigsaw.ID);
-                    if (jigsaw.ID > MaxID)
-                        MaxID = jigsaw.ID;
+                    if (jigsaw.ID > MaxID) MaxID = jigsaw.ID;
                 }
                 progressBar.IsVisible = false;
                 ItemCount = $"{AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
@@ -133,8 +126,42 @@ namespace XJigsaw.ViewModels
                 HistoryLocalPage.HistoryLocalPageInstance.UpdateDBSize();
                 HistoryLocalPage.HistoryLocalPageInstance.ScrollToLatest();
                 HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(true);
+                if (jigsaws.Count == 0)
+                    HistoryLocalPage.HistoryLocalPageInstance.NoteNoUpdates();
             });
             return Task.CompletedTask;
+        }
+
+        JigsawListItem JigsawToJigsawListItem(Jigsaw jigsaw)
+        {
+            JigsawListItem item = new JigsawListItem(jigsaw.ID, jigsaw.Name, jigsaw.BytesSmall);
+            // udpate
+            item.ImageSize = $"{AppResources.XJigsaw_Jigsaw_PictureSize}: {jigsaw.ImageHeight}x{jigsaw.ImageWidth}";
+            item.Level = $"{AppResources.XJigsaw_Jigsaw_PictureLevel}: {BestScoreViewModel.FormatLevelById(jigsaw.Level)}";
+            item.Steps = $"{AppResources.XJigsaw_Jigsaw_PictureSteps}: {jigsaw.Steps}";
+            item.ImageRatio = $"{AppResources.XJigsaw_Jigsaw_PictureRatio}: {jigsaw.ImageRatio}";
+            item.CreatedDateTime = $"{AppResources.XJigsaw_Jigsaw_PictureCreationDate}: {DateTime.Parse(jigsaw.CreatedDateTime).ToString(Utility.DATETIME_FORMAT_SHOW)}";
+            return item;
+        }
+
+        public void UpdateJigsawItem(Jigsaw jigsaw)
+        {
+            int index = -1;
+            foreach (JigsawListItem item in JigsawListItems)
+            {
+                if (item.ID == jigsaw.ID)
+                {
+                    index = JigsawListItems.IndexOf(item);
+                    break;
+                }
+            }
+            if (index >= 0)
+            {
+                JigsawListItems.RemoveAt(index);
+                JigsawListItem item = JigsawToJigsawListItem(jigsaw);
+                JigsawListItems.Insert(index, item);
+                if (index == 0) HistoryLocalPage.HistoryLocalPageInstance.ScrollToLatest();
+            }
         }
 
         public bool IsRefreshing

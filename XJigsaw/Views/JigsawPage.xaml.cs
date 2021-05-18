@@ -224,6 +224,10 @@ namespace XJigsaw.Views
             JigsawPage.CurrentJigsaw.IsDeleted = false;
 
             await App.Database.SaveJigsawAsync(JigsawPage.CurrentJigsaw);
+            if (HistoryLocalViewModel.JigsawIDs.Contains(JigsawPage.CurrentJigsaw.ID))
+            {
+                HistoryLocalPage.UpdatedJigsawID = JigsawPage.CurrentJigsaw.ID;
+            }
             App.ShellInstance.JigsawSettings.CurrentJigsawId = JigsawPage.CurrentJigsaw.ID;
             await App.Database.SaveSettingAsync(App.ShellInstance.JigsawSettings);
             UpdateStatusBar(CurrentJigsaw);
