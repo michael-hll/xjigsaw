@@ -22,7 +22,7 @@ namespace XJigsaw.ViewModels
         bool isRefreshing;
 
         public ObservableCollection<JigsawListItem> JigsawListItems { get; private set; } = new ObservableCollection<JigsawListItem>();
-        public static HashSet<int> JigsawIDs = new HashSet<int>();
+        public HashSet<int> JigsawIDs = new HashSet<int>();
         public int MaxID { get; set; } = 0;
 
         public ICommand LoadMoreDataCommand => new Command(GetNextPageOfData);
