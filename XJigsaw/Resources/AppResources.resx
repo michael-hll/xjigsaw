@@ -228,4 +228,7 @@
 	<data name="XJigsaw_Jigsaw_History_Loacal_NoUpdates" xml:space="preserve">
         <value>No Updates</value>
     </data>
+	<data name="XJigsaw_Jigsaw_About_Build" xml:space="preserve">
+        <value>Build</value>
+    </data>
 </root>

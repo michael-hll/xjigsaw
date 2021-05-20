@@ -100,7 +100,7 @@ namespace XJigsaw.ViewModels
         {
             get
             {
-                return $"{Utility.GetShortVersion()} ({Utility.GetAppVersion()})";
+                return $"{Utility.GetShortVersion()} ({Resources.AppResources.XJigsaw_Jigsaw_About_Build} {Utility.GetAppVersion()})";
             }
         }
 

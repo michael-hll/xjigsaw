@@ -478,5 +478,11 @@ namespace XJigsaw.Resources {
                 return ResourceManager.GetString("XJigsaw_Jigsaw_History_Loacal_NoUpdates", resourceCulture);
             }
         }
+        
+        internal static string XJigsaw_Jigsaw_About_Build {
+            get {
+                return ResourceManager.GetString("XJigsaw_Jigsaw_About_Build", resourceCulture);
+            }
+        }
     }
 }
