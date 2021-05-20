@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
+using XJigsaw.Models;
 
 namespace XJigsaw.Views
 {
@@ -13,8 +14,15 @@ namespace XJigsaw.Views
             InitializeComponent();
             this.ParentContainer.HeightRequest = Application.Current.MainPage.Height -
                 this.ParentContainer.Padding.Top - this.ParentContainer.Padding.Bottom;
+            this.BindingContext = App.ShellInstance.JigsawSettings;
+
             if (App.ShellInstance.JigsawSettings.IsReadPrivacy)
-                this.CloseButton.BackgroundColor = Color.DarkGray;
+            {
+                this.agreeCheckBox.IsEnabled = false;
+                this.agreeCheckBox.IsChecked = true;
+                this.agreeCheckBox.Color = Color.Gray;
+                this.CloseButton.IsEnabled = true;
+            }
         }
 
         protected override void OnAppearing()
@@ -105,5 +113,9 @@ namespace XJigsaw.Views
             await Navigation.PopPopupAsync();
         }
 
+        void agreeCheckBox_CheckedChanged(System.Object sender, Xamarin.Forms.CheckedChangedEventArgs e)
+        {
+            this.CloseButton.IsEnabled = this.agreeCheckBox.IsChecked;
+        }
     }
 }

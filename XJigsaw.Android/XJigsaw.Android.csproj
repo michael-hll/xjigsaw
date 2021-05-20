@@ -92,6 +92,7 @@
     <Compile Include="ImageResource.cs" />
     <Compile Include="AppVersionAndBuild.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="CloseApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

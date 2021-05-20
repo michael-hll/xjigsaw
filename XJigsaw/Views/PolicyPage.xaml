@@ -27,13 +27,14 @@
         HorizontalOptions="FillAndExpand" 
         Padding="10,10,10,10">
         <Frame x:Name="ParentContainer" BackgroundColor="White" Margin="0" Padding="2">
-            <Grid>
+            <Grid Padding="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <ScrollView Grid.Row="0">
@@ -129,7 +130,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="作者:" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
-                                    <Span Text=" 日月微光"
+                                    <Span Text=" 韩亮亮"
                                           FontSize="13" TextColor="Black"/>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -145,7 +146,7 @@
                             </Label.FormattedText>
                         </Label>
 
-                        <Label HorizontalOptions="Start" Margin="20,5">
+                        <Label HorizontalOptions="Center" Margin="5,5">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="链接: " FontSize="9" TextColor="Black" FontAttributes="Bold"/>
@@ -158,9 +159,24 @@
                     </StackLayout>
                 </ScrollView>
 
-                <Button x:Name="CloseButton" Text="已阅读并同意" TextColor="White"
+                <Grid Grid.Row="1" HeightRequest="25">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35*" />
+                        <ColumnDefinition Width="65*" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="agreeCheckBox" CheckedChanged="agreeCheckBox_CheckedChanged"
+                              Grid.Row="0" Grid.Column="0" HorizontalOptions="End"/>
+                    <Label Text="已经阅读该隐私政策" Grid.Row="0" Grid.Column="1" TextColor="Black"
+                           FontSize="12" HorizontalOptions="Start"/>
+                </Grid>
+
+                <Button x:Name="CloseButton" Text="同意" TextColor="White" IsEnabled="False"
                         Clicked="CloseButton_Clicked"
-                        Grid.Row="1"                                                
+                        Margin="0,5,0,5"
+                        Grid.Row="2"                                                
                         HorizontalOptions="Center"/>
             </Grid>
         </Frame>

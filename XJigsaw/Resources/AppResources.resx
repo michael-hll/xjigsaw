@@ -193,13 +193,13 @@
         <value>begin to load</value>
     </data>
 	<data name="XJigsaw_Jigsaw_About_Warning" xml:space="preserve">
-        <value>Jigsaw is saved in your local device. All saved data will be lost when you uninstall the app! You can save jigsaw successfully only when you finished watching an advertisement.</value>
+        <value>Jigsaw is saved in your local device. All saved data will be lost when you uninstall the app! In a free version, you can save jigsaw successfully only when you finished watching an advertisement.</value>
     </data>
 	<data name="XJigsaw_Jigsaw_About_Author" xml:space="preserve">
         <value>Author:</value>
     </data>
 	<data name="XJigsaw_Jigsaw_About_Author_Name" xml:space="preserve">
-        <value>Ri Yue Wei Guang</value>
+        <value>Han LiangLiang</value>
     </data>
 	<data name="XJigsaw_Jigsaw_About_BestScore" xml:space="preserve">
         <value>Best Scores</value>
