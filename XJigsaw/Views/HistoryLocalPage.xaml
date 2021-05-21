@@ -97,8 +97,6 @@
             </Grid>
         </Frame>
 
-        <ProgressBar x:Name="progressBar" Progress="0.00" ProgressColor="{StaticResource Primary}" HeightRequest="5" IsVisible="False" Margin="0"/>
-
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshCommand}"
                      x:Name="refreshView"

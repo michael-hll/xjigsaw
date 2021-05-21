@@ -10,6 +10,7 @@ using Plugin.ImageEdit;
 using Plugin.Toast;
 using System.Threading.Tasks;
 using XJigsaw.Resources;
+using System.Linq;
 
 namespace XJigsaw.Views
 {
@@ -20,10 +21,10 @@ namespace XJigsaw.Views
             InitializeComponent();
             BindingContext = new HistoryLocalViewModel();
             HistoryLocalPageInstance = this;
-            this.ProgressBar = this.progressBar;
+
+            UpdateSelectionData(Enumerable.Empty<JigsawListItem>(), Enumerable.Empty<JigsawListItem>());
         }
 
-        public ProgressBar ProgressBar;
         public static int UpdatedJigsawID = 0;
 
         protected override void OnAppearing()
@@ -69,14 +70,10 @@ namespace XJigsaw.Views
             CrossToastPopUp.Current.ShowToastMessage(XJigsaw.Resources.AppResources.XJigsaw_Jigsaw_History_Loacal_NoUpdates);
         }
 
-        async void RefreshImageButton_Clicked(System.Object sender, System.EventArgs e)
+        void RefreshImageButton_Clicked(System.Object sender, System.EventArgs e)
         {
-            EnableImageButtons(false);
-            refreshView.IsEnabled = false;
-            await ((HistoryLocalViewModel)BindingContext).RefreshDataAsync();
+            ((HistoryLocalViewModel)BindingContext).IsRefreshing = true;
             UpdateImageButtonVisible();
-            EnableImageButtons(true);
-            refreshView.IsEnabled = true;
         }
 
         async void DeleteImageButton_Clicked(System.Object sender, System.EventArgs e)
@@ -102,6 +99,11 @@ namespace XJigsaw.Views
         }
 
         void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        {
+            UpdateSelectionData(e.PreviousSelection, e.CurrentSelection);
+        }
+
+        void UpdateSelectionData(IEnumerable<object> previousSelectedItems, IEnumerable<object> currentSelectedItems)
         {
             UpdateImageButtonVisible();
             UpdateSelectionCount();
@@ -130,11 +132,11 @@ namespace XJigsaw.Views
             this.collectionView.SelectedItems.Clear();
         }
 
-        public async void ScrollToLatest()
+        public void ScrollToLatest()
         {
             if (((HistoryLocalViewModel)BindingContext).JigsawListItems.Count > 0)
             {
-                await Task.Delay(TimeSpan.FromSeconds(0.1));
+                Task.Delay(TimeSpan.FromSeconds(0.1));
                 this.collectionView.ScrollTo(0);
             }
         }

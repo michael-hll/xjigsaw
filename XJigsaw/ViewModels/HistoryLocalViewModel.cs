@@ -17,16 +17,11 @@ namespace XJigsaw.ViewModels
 {
     public class HistoryLocalViewModel : BaseViewModel
     {
-        const int MaximumItemCount = 50;
-        const int PageSize = 10;
-        bool isRefreshing;
-
         public ObservableCollection<JigsawListItem> JigsawListItems { get; private set; } = new ObservableCollection<JigsawListItem>();
         public HashSet<int> JigsawIDs = new HashSet<int>();
         public int MaxID { get; set; } = 0;
 
-        public ICommand LoadMoreDataCommand => new Command(GetNextPageOfData);
-        public ICommand RefreshCommand => new Command(async () => await RefreshDataAsync());
+        public ICommand RefreshCommand => new Command(() => this.RefreshData());
         public ICommand SelectCommand => new Command<JigsawListItem>(async (item) => await SelectJigsawListItemAsync(item));
         public ICommand DeleteCommand => new Command<JigsawListItem>(async (item) => await DeleteJigsawItemAsync(item));
 
@@ -90,7 +85,7 @@ namespace XJigsaw.ViewModels
         public HistoryLocalViewModel()
         {
             Title = Resources.AppResources.XJigsaw_Jigsaw_Title;
-            Task.Run(async () => await GetJigsawsListAysnc()).Wait();
+            RefreshData();
             PropertyChanged += HistoryLocalViewModel_PropertyChanged;
         }
 
@@ -99,37 +94,19 @@ namespace XJigsaw.ViewModels
             //throw new NotImplementedException();
         }
 
-        public Task GetJigsawsListAysnc()
+        async Task<int> GetJigsawsListAysnc()
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync(MaxID);
+            foreach (var jigsaw in jigsaws)
             {
-                await Task.Delay(TimeSpan.FromSeconds(0.1));
-                HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(false);
-                List<Jigsaw> jigsaws = await App.Database.GetJigsawsAsync(MaxID);
-                ProgressBar progressBar = HistoryLocalPage.HistoryLocalPageInstance.ProgressBar;
-                progressBar.IsVisible = jigsaws.Count > 0;
-                int i = 0;
-                foreach (var jigsaw in jigsaws)
-                {
-                    i++;
-                    await progressBar.ProgressTo(i / (double)jigsaws.Count, 1, Easing.Linear);
-                    if (JigsawIDs.Contains(jigsaw.ID)) continue;
-                    JigsawListItem item = JigsawToJigsawListItem(jigsaw);
-                    JigsawListItems.Insert(0, item);
-                    JigsawIDs.Add(jigsaw.ID);
-                    if (jigsaw.ID > MaxID) MaxID = jigsaw.ID;
-                }
-                progressBar.IsVisible = false;
-                ItemCount = $"{AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
-                HistoryLocalPage.HistoryLocalPageInstance.ClearSelection();
-                HistoryLocalPage.HistoryLocalPageInstance.UpdateSelectionCount();
-                HistoryLocalPage.HistoryLocalPageInstance.UpdateDBSize();
-                HistoryLocalPage.HistoryLocalPageInstance.ScrollToLatest();
-                HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(true);
-                if (jigsaws.Count == 0)
-                    HistoryLocalPage.HistoryLocalPageInstance.NoteNoUpdates();
-            });
-            return Task.CompletedTask;
+                if (JigsawIDs.Contains(jigsaw.ID)) continue;
+                JigsawListItem item = JigsawToJigsawListItem(jigsaw);
+                JigsawListItems.Insert(0, item);
+                JigsawIDs.Add(jigsaw.ID);
+                if (jigsaw.ID > MaxID) MaxID = jigsaw.ID;
+            }
+            ItemCount = $"{AppResources.XJigsaw_Jigsaw_HistoryTotalCount}: {JigsawListItems.Count}";
+            return jigsaws.Count;
         }
 
         JigsawListItem JigsawToJigsawListItem(Jigsaw jigsaw)
@@ -164,26 +141,36 @@ namespace XJigsaw.ViewModels
             }
         }
 
+        bool isRefreshing;
         public bool IsRefreshing
         {
             get { return isRefreshing; }
             set
             {
-                isRefreshing = value;
-                OnPropertyChanged();
+                if (isRefreshing != value)
+                {
+                    isRefreshing = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        void GetNextPageOfData()
+        public void RefreshData()
         {
-        }
-
-        public async Task RefreshDataAsync()
-        {
-            IsRefreshing = true;
-            await GetJigsawsListAysnc();
-            //TODO: GetNextPageOfData();
-            IsRefreshing = false;
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                IsRefreshing = true;
+                HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(false);
+                int count = await GetJigsawsListAysnc();
+                HistoryLocalPage.HistoryLocalPageInstance.ClearSelection();
+                HistoryLocalPage.HistoryLocalPageInstance.UpdateSelectionCount();
+                HistoryLocalPage.HistoryLocalPageInstance.UpdateDBSize();
+                HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(true);
+                if (count == 0)
+                    HistoryLocalPage.HistoryLocalPageInstance.NoteNoUpdates();
+                IsRefreshing = false;
+                HistoryLocalPage.HistoryLocalPageInstance.ScrollToLatest();
+            });
         }
     }
 }
