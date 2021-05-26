@@ -22,7 +22,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.riyueweiguang.xjigsaw</string>
 	<key>CFBundleVersion</key>
-	<string>18</string>
+	<string>22</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>

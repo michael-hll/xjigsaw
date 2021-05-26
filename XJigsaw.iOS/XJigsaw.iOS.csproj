@@ -125,7 +125,6 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="Xamarin.iOS" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
@@ -173,10 +172,6 @@
     <ProjectReference Include="..\ImageCropper.Forms-master\ImageCropper\ImageCropper.iOS\ImageCropper.iOS.csproj">
       <Project>{2798EED2-0A88-45E7-97D5-F7DCB01233E1}</Project>
       <Name>ImageCropper.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ImageCropper.Forms-master\Binding\TOCropViewController\TOCropViewController.csproj">
-      <Project>{C5DCB26A-02D0-4D8B-878E-C9169915C22A}</Project>
-      <Name>TOCropViewController</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
