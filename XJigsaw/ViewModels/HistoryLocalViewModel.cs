@@ -166,7 +166,7 @@ namespace XJigsaw.ViewModels
                 HistoryLocalPage.HistoryLocalPageInstance.UpdateSelectionCount();
                 HistoryLocalPage.HistoryLocalPageInstance.UpdateDBSize();
                 HistoryLocalPage.HistoryLocalPageInstance.EnableImageButtons(true);
-                if (count == 0)
+                if (count == 0 && JigsawListItems.Count > 0)
                     HistoryLocalPage.HistoryLocalPageInstance.NoteNoUpdates();
                 IsRefreshing = false;
                 HistoryLocalPage.HistoryLocalPageInstance.ScrollToLatest();
